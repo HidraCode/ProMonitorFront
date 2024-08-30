@@ -128,7 +128,7 @@ const Login = () => {
               <Form.Item name="remember" valuePropName="checked" noStyle>
                 <Checkbox>Lembre-se da minha senha!</Checkbox>
               </Form.Item>
-              <a href="">Esqueceu a senha?</a>
+              <a href="/api/auth/pass-recovery">Esqueceu a senha?</a>
             </div>
           </Form.Item>
 

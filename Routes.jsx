@@ -5,6 +5,7 @@ import Login from './src/pages/auth/login/Login';
 import RecuperarSenha from './src/pages/auth/login/RecuperarSenha';
 import VerificarCodigo from './src/pages/auth/login/VerificarCodigo';
 import RedefinirSenha from './src/pages/auth/login/RedefinirSenha';
+import LandingPage from './src/pages/LandingPage';
 
 function AppRoutes() {
   return (
