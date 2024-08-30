@@ -10,6 +10,7 @@ function AppRoutes() {
   return (
     <Router>
       <Routes>
+      <Route path='/' element={<LandingPage />} />
         <Route path='/api/auth/signup' element={<Signup />} />
         <Route path='/api/auth/login' element={<Login />} />
         <Route path='/api/auth/pass-recovery' element={<RecuperarSenha />} />
