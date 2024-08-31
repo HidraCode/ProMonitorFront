@@ -1,46 +1,59 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
+import { Alert } from 'antd';
 import { Col, Row, Form, Button, Input } from 'antd';
 import logoPreta from '../../../assets/logoPreta.svg'
 import { LeftOutlined } from '@ant-design/icons';
+import { recuperarSenhaService } from '../../../services/auth.js';
 
 const RecuperarSenha = () => {
 
     const [form] = Form.useForm();
+    const [message, setMessage] = useState(null);
+    const [alert, setAlert] = useState(false)
+    const navigate = useNavigate();
 
     const handleSubmit = async (values) => {
-        console.log('Received values of form: ', values);
         try {
-            // Envia uma requisição POST para o backend com os dados do formulário
-            const response = await fetch('http://your-backend-api.com/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(values),
-            });
+            // Recebe a resposta da API
+            const response = await recuperarSenhaService(values, false);
+            console.log('Received values of form: ', values);
 
-            // Processa a resposta da API
-            const data = await response.json();
-            if (response.ok) {
-                // Se a resposta for bem-sucedida, redireciona para a página VerificarCodigo
-                console.error('Password recovery successful:', data);
-                form.resetFields(); // Limpa os campos do formulário
+            // Verifica a resposta da API
+            if (response.data.success) {
+                const token = response.data.token;
+                const requestData = { email: values.email, token: token };
+                navigate('/api/auth/pass-recovery/verify-code', { state: requestData });
             } else {
-                // Se houver um erro, lida com ele (ex: mostra mensagem de erro)
-                console.error('Password recovery failed:', data);
-                form.resetFields(); // Limpa os campos do formulário
+                setMessage('Erro: ' + response.message);
+                setAlert(true);
+                console.log(response.message);
             }
         } catch (error) {
-            // Lida com erros de rede ou outros tipos de erro
-            console.error('Error:', error);
+            // Exibe um alerta e limpar os campos do formulário
+            console.error('Erro ao recuperar a senha:', error.message);
+            setMessage('Erro: ' + (error.response?.data?.message || 'Erro desconhecido'));
+            setAlert(true);
             form.resetFields(); // Limpa os campos do formulário
         }
     }
+
+    // Remove o alerta depois de 5 segundos
+    useEffect(() => {
+        if (alert) {
+            const timer = setTimeout(() => {
+                setAlert(false);
+            }, 5000); // 5000 ms = 5 segundos
+
+            return () => clearTimeout(timer); // Limpa o temporizador se o componente for desmontado
+        }
+    }, [alert]);
 
     return (
         <section className="relative h-screen">
             {/* Botão de voltar */}
             <Button
+                onClick={() => navigate('/api/auth/login')}
                 type="text"
                 className="absolute font-medium lg:text-sm sm:text-xs justify-start m-5 absolute"
                 icon={<LeftOutlined />}>
@@ -53,6 +66,8 @@ const RecuperarSenha = () => {
                 <Col xs={16} sm={16} md={16} lg={12} xl={6} // Ajuste na responsividade
                     justify="center"
                     className="text-center space-y-6" >
+                    {/* Mensagem de erro para alertar ao usuário que a requisição falhou */}
+                    {alert && <Alert message={message} type={'error'} showIcon />}
                     {/* Logo do ProMonitor */}
                     <img src={logoPreta}
                         alt="Logo ProMonitor"
@@ -77,7 +92,7 @@ const RecuperarSenha = () => {
                                 {
                                     type: 'email',
                                     message: 'O input não é um email válido!',
-                                }
+                                },
                             ]}
                             layout="vertical"
                             label={<span className="font-medium">E-mail:</span>}
