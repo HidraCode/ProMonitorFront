@@ -12,11 +12,11 @@ function AppRoutes() {
     <Router>
       <Routes>
       <Route path='/' element={<LandingPage />} />
-        <Route path='/api/auth/signup' element={<Signup />} />
-        <Route path='/api/auth/login' element={<Login />} />
-        <Route path='/api/auth/pass-recovery' element={<RecuperarSenha />} />
-        <Route path='/api/auth/pass-recovery/verify-code' element={<VerificarCodigo />} />
-        <Route path='/api/auth/pass-reset' element={<RedefinirSenha />} />
+        <Route path='/auth/signup' element={<Signup />} />
+        <Route path='/auth/login' element={<Login />} />
+        <Route path='/auth/pass-recovery' element={<RecuperarSenha />} />
+        <Route path='/auth/pass-recovery/verify-code' element={<VerificarCodigo />} />
+        <Route path='/auth/pass-reset' element={<RedefinirSenha />} />
       </Routes>
     </Router>
   );

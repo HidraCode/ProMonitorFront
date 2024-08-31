@@ -1,7 +1,7 @@
 import { React, useState } from 'react';
 import InputMask from 'react-input-mask'
 import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
-import { Row, Col, Form, Input, Button, Image, Space, Switch } from 'antd';
+import { Row, Col, Form, Input, Button, Image, Space, Switch, App } from 'antd';
 import logo from "../../../../public/logo.svg"
 import bg_esquerda from "../../../assets/bg_esquerda.png"
 import AppHeader from '../../../components/layout/Header';
@@ -32,16 +32,17 @@ const Signup = () => {
   return (
       <>
       <AppHeader />
-      <Row className="w-full max-w-screen-xl">
+      <Row className="">
         {/* Left Side */}
         <Col
-          span={12}
-          className="flex items-center justify-center bg-cover bg-center"
+          md={12}
+          xs={0}
+          className="lg:flex items-center justify-center bg-cover bg-center h-lvh	 sm:hidden"
           style={{ backgroundImage: `url(${bg_esquerda})`, background: "cover" }}
         >
           <div className="text-white text-center p-8 bg-opacity-75">
             <Row>
-              <Col span={4} />
+              <Col span={4} /> 
               <Col span={8}>
                 <Image src={logo} preview={false} width={120} />
               </Col>
@@ -66,7 +67,8 @@ const Signup = () => {
         </Col>
 
         {/* Right Side */}
-        <Col span={12} className="flex items-center justify-center bg-white">
+        <Col md={12} sm={24} className="flex items-center justify-center bg-white">
+        <div className="flex items-center justify-center" >
           <Form
             layout="vertical"
             className="w-full max-w-md p-8"
@@ -173,6 +175,7 @@ const Signup = () => {
 
               <Button type="primary" className="w-full mt-4 bg-custom-dark-blue" htmlType="submit">Entrar</Button>
           </Form>
+        </div>
         </Col>
       </Row>
     </>
