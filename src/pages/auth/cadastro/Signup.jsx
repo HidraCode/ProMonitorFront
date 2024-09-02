@@ -23,13 +23,25 @@ const Signup = () => {
   };
 
   const handleSubmit = async (values) => {
+    // Remover formatação do CPF
+    const cpf = values.cpf.replace(/[\.\-_]/g, '');
+  
+    // Remover formatação do telefone
+    const telefone = values.telefone.replace(/[-()\s_]/g, '');
+  
+    // Convertendo a data de nascimento para o formato aaaa-mm-dd
+    const [dia, mes, ano] = values.data_nascimento.split('/');
+    const data_nascimento = `${ano}-${mes}-${dia}`;
+  
+    // Preparando os dados do usuário
     const userData = {
       ...values,
+      cpf: cpf,
+      telefone: telefone,
+      data_nascimento: data_nascimento,
       tipo: isStudent ? 'aluno' : 'professor'
     };
-  
-    console.log('Dados do usuário:', userData);
-  
+    // Chamando a API para criar o usuário
     try {
       const response = await createUser(userData);
       console.log('Cadastro realizado com sucesso:', response);

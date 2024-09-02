@@ -9,6 +9,7 @@ const api = axios.create({
 });
 
 export const createUser = async (userData) => {
+    console.log('Dados do usuário:', userData);
     const endpoint = userData.tipo === 'aluno' ? '/alunos' : '/professores';
     try {
         const response = await api.post(endpoint, userData);
