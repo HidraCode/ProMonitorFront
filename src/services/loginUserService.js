@@ -6,7 +6,7 @@ export const loginUserService = async (values) => {
         // Envia as credenciais de login (e-mail e senha) para o back-end
         const response = await axios.post('http://localhost:3000/api/auth/login', {
             email: values.email,
-            password: values.password,
+            senha: values.senha,
             tipo_usuario: values.tipo_usuario, // Inclua o tipo de usuário
         });
 

@@ -106,7 +106,7 @@ const Login = () => {
               </Form.Item>
 
               <Form.Item
-                name="password"
+                name="senha"
                 className="mb-4"
                 rules={[{ required: true, message: 'Por favor, insira sua senha!' }]}
               >

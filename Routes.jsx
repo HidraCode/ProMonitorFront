@@ -7,7 +7,7 @@ import VerificarCodigo from './src/pages/auth/login/VerificarCodigo.jsx';
 import LandingPage from './src/pages/LandingPage.jsx';
 import EditalForm from './src/pages/professor/EditalForm.jsx';
 import AlterarDadosAluno from './src/pages/student/AlterarDadosAluno.jsx';
-import HomeStudent from './src/pages/student/HomeStudent.jsx';
+//import HomeStudent from './src/pages/student/HomeStudent.jsx';
 
 function AppRoutes() {
   return (
@@ -18,7 +18,6 @@ function AppRoutes() {
         <Route path="/auth/login" element={<Login />} />
         <Route path="/auth/password-recovery" element={<RecuperarSenha />} />
         <Route path="/auth/password-recovery/verify-code" element={<VerificarCodigo />} />
-        <Route path="/student/home" element={<HomeStudent />} />
         <Route path="/student/update-data" element={<AlterarDadosAluno />} />
         <Route path="/professor/create-edital" element={<EditalForm />} />
       </Routes>
