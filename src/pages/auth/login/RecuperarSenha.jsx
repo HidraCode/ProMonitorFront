@@ -1,11 +1,12 @@
 import React from "react";
 import { Col, Row, Form, Button, Input } from 'antd';
-import logoPreta from '../../../assets/logoPreta.svg'
+import { useNavigate } from 'react-router-dom'; // Importa o useNavigate
+import logoPreta from '../../../assets/logoPreta.svg';
 import { LeftOutlined } from '@ant-design/icons';
 
 const RecuperarSenha = () => {
-
     const [form] = Form.useForm();
+    const navigate = useNavigate(); // Inicializa o hook useNavigate
 
     const handleSubmit = async (values) => {
         console.log('Received values of form: ', values);
@@ -22,19 +23,21 @@ const RecuperarSenha = () => {
             // Processa a resposta da API
             const data = await response.json();
             if (response.ok) {
-                // Se a resposta for bem-sucedida, redireciona para a página VerificarCodigo
-                console.error('Password recovery successful:', data);
+                console.log('Password recovery successful:', data);
                 form.resetFields(); // Limpa os campos do formulário
+                // Aqui você pode redirecionar para a página VerificarCodigo
             } else {
-                // Se houver um erro, lida com ele (ex: mostra mensagem de erro)
                 console.error('Password recovery failed:', data);
                 form.resetFields(); // Limpa os campos do formulário
             }
         } catch (error) {
-            // Lida com erros de rede ou outros tipos de erro
             console.error('Error:', error);
             form.resetFields(); // Limpa os campos do formulário
         }
+    }
+
+    const handleBackToLogin = () => {
+        navigate('/auth/login'); // Redireciona para a página de login
     }
 
     return (
@@ -43,14 +46,17 @@ const RecuperarSenha = () => {
             <Button
                 type="text"
                 className="absolute font-medium lg:text-sm sm:text-xs justify-start m-5 absolute"
-                icon={<LeftOutlined />}>
+                icon={<LeftOutlined />}
+                onClick={handleBackToLogin} // Adiciona o redirecionamento ao clicar
+            >
                 Voltar
             </Button>
-            <Row // Ajustes para que a Row fique centralizada
+            <Row
                 justify="center"
                 align="middle"
-                className="h-full">
-                <Col xs={16} sm={16} md={16} lg={12} xl={6} // Ajuste na responsividade
+                className="h-full"
+            >
+                <Col xs={16} sm={16} md={16} lg={12} xl={6}
                     justify="center"
                     className="text-center space-y-6" >
                     {/* Logo do ProMonitor */}
@@ -58,15 +64,17 @@ const RecuperarSenha = () => {
                         alt="Logo ProMonitor"
                         className="mx-auto size-5/12" />
                     <h1 className="mt-0 md:text-3xl text-2xl font-bold">Recuperar senha</h1>
-                    <p className="font-medium lg:text-sm sm:text-xs w-2/3 mx-auto">Para redefinir sua senha,
-                        informe o e-mail cadastrado na sua conta e lhe enviaremos um link com as instruções.</p>
+                    <p className="font-medium lg:text-sm sm:text-xs w-2/3 mx-auto">
+                        Para redefinir sua senha, informe o e-mail cadastrado na sua conta e lhe enviaremos um link com as instruções.
+                    </p>
                     <Form
                         form={form}
                         className="justify-center space-y-5"
                         layout="vertical"
                         onFinish={handleSubmit}
-                        requiredMark={false}>
-                        {/* Campo para inserir e-mail com obrigatoriedade*/}
+                        requiredMark={false}
+                    >
+                        {/* Campo para inserir e-mail com obrigatoriedade */}
                         <Form.Item
                             name="email"
                             rules={[
@@ -85,15 +93,18 @@ const RecuperarSenha = () => {
                         >
                             <Input
                                 placeholder="Digite seu e-mail"
-                                className="w-full bg-gray-100 p-2 border-none" />
+                                className="w-full bg-gray-100 p-2 border-none"
+                            />
                         </Form.Item>
-                        {/*Botão para envio do formulário*/}
-                        <Form.Item >
+                        {/* Botão para envio do formulário */}
+                        <Form.Item>
                             <Button
                                 type="primary"
                                 htmlType="submit"
-                                className="w-full bg-custom-dark-blue text-white p-5 font-semibold border-none">
-                                Enviar</Button>
+                                className="w-full bg-custom-dark-blue text-white p-5 font-semibold border-none"
+                            >
+                                Enviar
+                            </Button>
                         </Form.Item>
                     </Form>
                 </Col>
