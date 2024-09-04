@@ -7,7 +7,6 @@ import VerificarCodigo from './src/pages/auth/login/VerificarCodigo.jsx';
 import LandingPage from './src/pages/LandingPage.jsx';
 import EditalForm from './src/pages/professor/EditalForm.jsx';
 import AlterarDadosAluno from './src/pages/student/AlterarDadosAluno.jsx';
-//import HomeStudent from './src/pages/student/HomeStudent.jsx';
 
 function AppRoutes() {
   return (

@@ -10,11 +10,11 @@ const AppHeader = ({ logoColor }) => {
 
   // Handlers for button clicks
   const handleLoginClick = () => {
-    navigate('/auth/login');
+    navigate('api/auth/login');
   };
 
   const handleSignupClick = () => {
-    navigate('/auth/signup');
+    navigate('api/auth/signup');
   };
 
   const handleLogoClick = () => {
