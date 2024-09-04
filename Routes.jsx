@@ -1,22 +1,24 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Signup from './src/pages/auth/cadastro/Signup';
-import Login from './src/pages/auth/login/Login';
-import RecuperarSenha from './src/pages/auth/login/RecuperarSenha';
-import VerificarCodigo from './src/pages/auth/login/VerificarCodigo';
-import RedefinirSenha from './src/pages/auth/login/RedefinirSenha';
-import LandingPage from './src/pages/LandingPage';
+import Signup from './src/pages/auth/cadastro/Signup.jsx';
+import Login from './src/pages/auth/login/Login.jsx';
+import RecuperarSenha from './src/pages/auth/login/RecuperarSenha.jsx';
+import VerificarCodigo from './src/pages/auth/login/VerificarCodigo.jsx';
+import LandingPage from './src/pages/LandingPage.jsx';
+import EditalForm from './src/pages/professor/EditalForm.jsx';
+import AlterarDadosAluno from './src/pages/student/AlterarDadosAluno.jsx';
 
 function AppRoutes() {
   return (
     <Router>
       <Routes>
-      <Route path='/' element={<LandingPage />} />
-        <Route path='/api/auth/signup' element={<Signup />} />
-        <Route path='/api/auth/login' element={<Login />} />
-        <Route path='/api/auth/pass-recovery' element={<RecuperarSenha />} />
-        <Route path='/api/auth/pass-recovery/verify-code' element={<VerificarCodigo />} />
-        <Route path='/api/auth/pass-reset' element={<RedefinirSenha />} />
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/auth/signup" element={<Signup />} />
+        <Route path="/auth/login" element={<Login />} />
+        <Route path="/auth/password-recovery" element={<RecuperarSenha />} />
+        <Route path="/auth/password-recovery/verify-code" element={<VerificarCodigo />} />
+        <Route path="/student/update-data" element={<AlterarDadosAluno />} />
+        <Route path="/professor/create-edital" element={<EditalForm />} />
       </Routes>
     </Router>
   );
