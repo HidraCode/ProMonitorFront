@@ -40,17 +40,17 @@ const AlterarDadosAluno = () => {
   };
 
   const validateCPF = (_, value) => {
-    const cpfPattern = /^\d{3}\.\d{3}\.\d{3}\-\d{2}$/;
+    const cpfPattern = /^\d{11}$/;
     if (value && !cpfPattern.test(value)) {
-      return Promise.reject(new Error('CPF inválido. Formato esperado: 000.000.000-00'));
+      return Promise.reject(new Error('CPF inválido. Formato esperado: 00000000000'));
     }
     return Promise.resolve();
   };
 
   const validatePhone = (_, value) => {
-    const phonePattern = /^\(\d{2}\) \d{4,5}-\d{4}$/;
+    const phonePattern = /^\d{11}$/;
     if (value && !phonePattern.test(value)) {
-      return Promise.reject(new Error('Telefone inválido. Formato esperado: (00) 00000-0000'));
+      return Promise.reject(new Error('Telefone inválido. Formato esperado: 00000000000'));
     }
     return Promise.resolve();
   };

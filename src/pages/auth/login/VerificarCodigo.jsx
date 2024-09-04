@@ -28,16 +28,8 @@ const VerificarCodigo = () => {
                 console.error('Code verification failed:', data);
                 form.resetFields(); // Limpa os campos do formulário
             }
-        } catch (error) {
-            console.error('Error:', error);
-            form.resetFields(); // Limpa os campos do formulário
-            if (response.status == 200) {
-                /* Se for bem-sucedida, redireciona para a página de recuperação de senha
-                com um token informando o id do usuário*/
-                navigate('/api/auth/pass-reset', { state: { token } });
-            }
         }
-        catch (error) {
+            catch (error) {
             // Exibe um alerta de erro
             setTypeAlert('error');
             setAlert(true);
@@ -90,7 +82,6 @@ const VerificarCodigo = () => {
         <section className="relative h-screen">
             {/* Botão de voltar */}
             <Button
-                onClick={() => navigate('/api/auth/pass-recovery')}
                 type="text"
                 className="font-medium absolute top-5 left-5"
                 icon={<LeftOutlined />}

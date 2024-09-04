@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
 import { Alert } from 'antd';
 import { Col, Row, Form, Button, Input } from 'antd';
 import { useNavigate } from 'react-router-dom'; // Importa o useNavigate
@@ -53,7 +52,6 @@ const RecuperarSenha = () => {
         <section className="relative h-screen">
             {/* Botão de voltar */}
             <Button
-                onClick={() => navigate('/api/auth/login')}
                 type="text"
                 className="absolute font-medium lg:text-sm sm:text-xs justify-start m-5 absolute"
                 icon={<LeftOutlined />}

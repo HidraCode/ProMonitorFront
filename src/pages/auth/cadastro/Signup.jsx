@@ -4,7 +4,7 @@ import { Row, Col, Form, Input, Button, Image, Switch } from 'antd';
 import logo from "../../../../public/logo.svg";
 import bg_esquerda from "../../../assets/bg_esquerda.png";
 import AppHeader from '../../../components/layout/Header';
-import { createUser } from '../../../services/api';
+import { createUser } from '../../../services/signupService.js';
 
 const Signup = () => {  
   const [form] = Form.useForm();
@@ -53,7 +53,7 @@ const Signup = () => {
   return (
     <>
       <AppHeader />
-      <Row className="w-full max-w-screen-xl">
+      <Row className="w-full h-screen max-w-screen-xl">
         {/* Left Side */}
         <Col
           span={12}
