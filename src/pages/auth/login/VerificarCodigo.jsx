@@ -16,18 +16,20 @@ const VerificarCodigo = () => {
     const location = useLocation();
     const { token, email } = location.state || {};
 
-    // Função chamada quando o formulário é enviado com sucesso
     const handleSubmit = async (values) => {
         try {
             const response = await verificarCodigoService(values, token);
             // Processa a resposta da API
-            if (response.status == 200) {
-                /* Se for bem-sucedida, redireciona para a página de recuperação de senha
-                com um token informando o id do usuário*/
-                navigate('/api/auth/pass-reset', { state: { token } });
+            const data = await response.json();
+            if (response.ok) {
+                console.log('Code verification successful:', data);
+                form.resetFields(); // Limpa os campos do formulário
+            } else {
+                console.error('Code verification failed:', data);
+                form.resetFields(); // Limpa os campos do formulário
             }
         }
-        catch (error) {
+            catch (error) {
             // Exibe um alerta de erro
             setTypeAlert('error');
             setAlert(true);
@@ -44,6 +46,9 @@ const VerificarCodigo = () => {
         setMessage(message);
     };
 
+    const handleBackToRecuperarSenha = () => {
+        navigate('/auth/password-recovery'); // Redireciona para a página de Recuperar Senha
+    }
 
     const handleResend = async () => {
         try {
@@ -77,17 +82,19 @@ const VerificarCodigo = () => {
         <section className="relative h-screen">
             {/* Botão de voltar */}
             <Button
-                onClick={() => navigate('/api/auth/pass-recovery')}
                 type="text"
                 className="font-medium absolute top-5 left-5"
-                icon={<LeftOutlined />}>
+                icon={<LeftOutlined />}
+                onClick={handleBackToRecuperarSenha} // Adiciona o redirecionamento ao clicar
+            >
                 Voltar
             </Button>
-            <Row // Ajustes para que a Row fique centralizada
+            <Row
                 justify="center"
                 align="middle"
-                className="h-full">
-                <Col xs={16} sm={16} md={16} lg={12} xl={6} // Ajuste na responsividade
+                className="h-full"
+            >
+                <Col xs={16} sm={16} md={16} lg={12} xl={6}
                     className="text-center space-y-6"
                 >
                     {/* Alerta de sucesso ou erro*/}
@@ -102,9 +109,11 @@ const VerificarCodigo = () => {
                         form={form}
                         className="space-y-5"
                         layout="vertical"
-                        onFinish={handleSubmit}>
-                        {/* Campo para inserir o código. Inicialmente suporta letras e números*/}
-                        <Form.Item name="verification_code"
+                        onFinish={handleSubmit}
+                    >
+                        {/* Campo para inserir o código */}
+                        <Form.Item
+                            name="verification_code"
                             rules={[
                                 {
                                     required: true,
@@ -112,12 +121,18 @@ const VerificarCodigo = () => {
                                 },
                             ]}
                         >
-                            <Input placeholder="Insira o código" className="appearance-none w-full bg-gray-100 p-2 border-none"
+                            <Input
+                                placeholder="Insira o código"
+                                className="appearance-none w-full bg-gray-100 p-2 border-none"
                             />
                         </Form.Item>
-                        {/* Botão de enviar o código recebido*/}
+                        {/* Botão de enviar o código recebido */}
                         <Form.Item>
-                            <Button type="primary" htmlType="submit" className="w-full mb-2 bg-custom-dark-blue text-white p-5 font-semibold border-none hover:bg-custom-dark-blue">
+                            <Button
+                                type="primary"
+                                htmlType="submit"
+                                className="w-full mb-2 bg-custom-dark-blue text-white p-5 font-semibold border-none hover:bg-custom-dark-blue"
+                            >
                                 Enviar
                             </Button>
                             <Button type="text" onClick={handleResend}>Reenviar código</Button>
