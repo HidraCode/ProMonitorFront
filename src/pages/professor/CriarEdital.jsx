@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { Form, Input, Button, DatePicker, Select, Modal } from 'antd';
-import { DeleteOutlined } from '@ant-design/icons';
-// import AppHeader from '../../components/layout/Header';
+import { DeleteOutlined, BellOutlined, HomeOutlined, EditOutlined, FileAddOutlined, OrderedListOutlined, UploadOutlined } from '@ant-design/icons';
+import { FaCircleUser } from "react-icons/fa6";
+import AppHeader from '../../components/layout/AppHeader';
+import Sidemenu from '../../components/layout/Sidemenu';
+import SidemenuItem from '../../components/layout/SidemenuItem';
 import moment from 'moment';
 
 const { RangePicker } = DatePicker;
 
-const EditalForm = () => {
+const CriarEdital = () => {
   const [form] = Form.useForm(); // Hook para manipular o formulário
   const [isModalOpen, setIsModalOpen] = useState(false); // Estado para controlar a visibilidade do modal
 
@@ -43,8 +46,36 @@ const EditalForm = () => {
   const handleCancel = () => {
     setIsModalOpen(false); // Fecha o modal sem enviar o formulário
   };
+  const buttons = [
+    <>
+      <Button
+        type="link"
+        className="text-white hover:text-gray-300"
+        icon={ <BellOutlined style={{ fontSize:'20px' }} /> }
+        onClick={null}
+      >
+      </Button>
+      <Button
+        type="link"
+        className="text-white hover:text-gray-300"
+        icon={ <FaCircleUser className='w-6 h-6' /> }
+        onClick={null}
+      >
+      </Button>
+    </>
+  ]
+
+  const sidemenuItems = [
+    <SidemenuItem icon={<HomeOutlined />} label="Home" />,
+    <SidemenuItem icon={<EditOutlined />} label="Análises" />,
+    <SidemenuItem icon={<FileAddOutlined />} label="Atribuições" />,
+    <SidemenuItem icon={<OrderedListOutlined />} label="Selecionamento" />,
+    <SidemenuItem icon={<UploadOutlined />} label="Lançar Edital" />
+  ];
 
   return (
+    <>
+    <AppHeader buttons={buttons} sideMenu={<Sidemenu items={sidemenuItems} />} />
     <div>
       {/* <AppHeader /> */}
       <div className="flex flex-col items-center justify-center min-h-screen bg-white p-4 md:my-0 my-16">
@@ -122,7 +153,8 @@ const EditalForm = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
-export default EditalForm;
+export default CriarEdital;
