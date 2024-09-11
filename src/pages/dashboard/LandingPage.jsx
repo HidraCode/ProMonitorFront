@@ -1,5 +1,5 @@
 import React from 'react';
-import AppHeader from '../components/layout/Header.jsx';
+import AppHeader from '../../components/layout/AppHeader.jsx';
 import { useNavigate } from 'react-router-dom';
 
 const LandingPage = () => {

@@ -4,9 +4,9 @@ import Signup from './src/pages/auth/cadastro/Signup.jsx';
 import Login from './src/pages/auth/login/Login.jsx';
 import RecuperarSenha from './src/pages/auth/login/RecuperarSenha.jsx';
 import VerificarCodigo from './src/pages/auth/login/VerificarCodigo.jsx';
-import LandingPage from './src/pages/LandingPage.jsx';
-import EditalForm from './src/pages/professor/EditalForm.jsx';
-import AlterarDadosAluno from './src/pages/student/AlterarDadosAluno.jsx';
+import LandingPage from './src/pages/dashboard/LandingPage.jsx';
+import CriarEdital from './src/pages/professor/CriarEdital.jsx';
+import AlterarDadosAluno from './src/pages/estudante/AlterarDadosAluno.jsx';
 
 function AppRoutes() {
   return (
@@ -18,7 +18,7 @@ function AppRoutes() {
         <Route path="/auth/password-recovery" element={<RecuperarSenha />} />
         <Route path="/auth/password-recovery/verify-code" element={<VerificarCodigo />} />
         <Route path="/student/update-data" element={<AlterarDadosAluno />} />
-        <Route path="/professor/create-edital" element={<EditalForm />} />
+        <Route path="/teacher/create-edital" element={<CriarEdital />} />
       </Routes>
     </Router>
   );

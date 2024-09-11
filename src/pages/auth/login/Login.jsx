@@ -3,7 +3,7 @@ import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Checkbox, Form, Input, Select, Row, Col } from 'antd';
 import { AiOutlineEye, AiFillEye } from 'react-icons/ai';
 import { useNavigate } from 'react-router-dom'; // Importa o useNavigate
-import AppHeader from '../../../components/layout/Header';
+import AppHeader from '../../../components/layout/AppHeader.jsx';
 import { loginUserService } from '../../../services/loginUserService.js'; // Certifique-se de ajustar o caminho
 
 const { Option } = Select;

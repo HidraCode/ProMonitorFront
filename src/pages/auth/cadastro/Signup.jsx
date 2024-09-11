@@ -4,7 +4,7 @@ import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
 import { Row, Col, Form, Input, Button, Image, Space, Switch, App } from 'antd';
 import logo from "../../../../public/logo.svg"
 import bg_esquerda from "../../../assets/bg_esquerda.png"
-import AppHeader from '../../../components/layout/Header';
+import AppHeader from '../../../components/layout/AppHeader.jsx';
 import { createUser } from '../../../services/signupService.js';
 
 const Signup = () => {  
@@ -51,9 +51,15 @@ const Signup = () => {
     }
   };
 
+  const buttons = [
+    <Button type='link' className='text-custom-light-blue'>
+      Login
+    </Button>
+  ]
+
   return (
     <>
-      <AppHeader />
+      <AppHeader buttons={buttons} logoColor={null} sideMenu={null} />
       <Row className="">
         {/* Left Side */}
         <Col
