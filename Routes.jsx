@@ -17,7 +17,7 @@ function AppRoutes() {
         <Route path="/auth/login" element={<Login />} />
         <Route path="/auth/password-recovery" element={<RecuperarSenha />} />
         <Route path="/auth/password-recovery/verify-code" element={<VerificarCodigo />} />
-        <Route path="/studant/update-data" element={<AlterarDadosAluno />} />
+        <Route path="/student/update-data" element={<AlterarDadosAluno />} />
         <Route path="/teacher/create-edital" element={<CriarEdital />} />
       </Routes>
     </Router>
