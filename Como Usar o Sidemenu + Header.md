@@ -10,7 +10,9 @@ irei explicar nesse arquivo as props de cada um deles e um exemplo pratico de co
 
 #### AppHeader - props: 
 **logoColor** (feito para se colocar a cor da logo desejada, se ficar vazio, será branco);
+
 **sideMenu** (chama o sideMenu, se ficar vazio, não haverá sideMenu);
+
 **buttons** (botões anexados ao final do menu, podem ser quaisquer botões, sejam ele de login ou até um botão de perfil)
 
 #### Sidemenu - props:
@@ -18,6 +20,7 @@ irei explicar nesse arquivo as props de cada um deles e um exemplo pratico de co
 
 #### SidemenuItem - props:
 **icon** (icone do botão)
+
 **label** (o que está escrito no botão)
 
 #### Exemplo de uso:
