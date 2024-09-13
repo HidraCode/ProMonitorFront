@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { Form, Input, Button, DatePicker, Modal } from 'antd';
-import { DeleteOutlined } from '@ant-design/icons';
+import { DeleteOutlined, ArrowLeftOutlined } from '@ant-design/icons';
+import { useNavigate } from 'react-router-dom'; // Importando useNavigate
 import moment from 'moment';
 // import AppHeader from '../../components/layout/Header';
 
 const AlterarDadosAluno = () => {
   const [form] = Form.useForm();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const navigate = useNavigate(); // Inicializa o useNavigate
 
   const onFinish = (values) => {
     const formattedValues = {
@@ -70,9 +72,19 @@ const AlterarDadosAluno = () => {
   };
 
   return (
-    <div>
-      {/* <AppHeader /> */}
-      <div className="flex flex-col items-center justify-center min-h-screen bg-white md:my-0 my-16">
+    <div className="flex flex-col min-h-screen bg-white">
+      <div className="flex justify-between items-center p-4 bg-white mb-8">
+        <Button
+          onClick={() => navigate('/student/home')} // Navega para /student/home
+          className="flex items-center bg-gray-200 px-4 py-2 rounded-lg text-gray-800"
+        >
+          <ArrowLeftOutlined />
+          <span className="ml-2 text-sm sm:text-base">Voltar</span>
+        </Button>
+        <div></div> {/* Placeholder to align button to the left */}
+      </div>
+
+      <div className="flex flex-col items-center justify-center flex-grow bg-white">
         <div className="text-center mb-6">
           <h2 className="text-2xl font-semibold">Alterar Dados Pessoais</h2>
         </div>
