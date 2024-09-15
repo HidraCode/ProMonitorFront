@@ -7,13 +7,14 @@ import { FaCircleUser } from "react-icons/fa6";
 import AppHeader from '../../components/layout/AppHeader';
 import Sidemenu from '../../components/layout/Sidemenu';
 import SidemenuItem from '../../components/layout/SidemenuItem';
+import { updateStudentService } from '../../services/updateStudentService';
 
 const AlterarDadosAluno = () => {
   const [form] = Form.useForm();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate(); // Inicializa o useNavigate
 
-  const onFinish = (values) => {
+  const onFinish = async (values) => {
     const formattedValues = {
       ...values,
       data_nascimento: values.data_nascimento
@@ -22,8 +23,22 @@ const AlterarDadosAluno = () => {
     };
 
     const filteredValues = filterValues(formattedValues);
-
     console.log('Form values:', filteredValues);
+
+    try {
+      // Chama o serviço para atualizar os dados
+      await updateStudentService(filteredValues);
+
+      console.log('Dados atualizados com sucesso!');
+      
+      // Redireciona o aluno para a home
+      navigate('/aluno');
+      
+    } catch (error) {
+      console.error('Erro ao atualizar os dados: ' + error.message);
+    }
+
+    
     onReset();
   };
 
