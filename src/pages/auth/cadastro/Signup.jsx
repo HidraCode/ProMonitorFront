@@ -1,16 +1,18 @@
 import { React, useState } from 'react';
 import InputMask from 'react-input-mask'
 import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
-import { Row, Col, Form, Input, Button, Image, Space, Switch, App } from 'antd';
+import { Row, Col, Form, Input, Button, Image, Space, Switch, App, Select } from 'antd';
 import logo from "../../../../public/logo.svg"
 import bg_esquerda from "../../../assets/bg_esquerda.png"
 import AppHeader from '../../../components/layout/AppHeader.jsx';
 import { createUser } from '../../../services/signupService.js';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const Signup = () => {  
   const [form] = Form.useForm();
   const [password, setPassword] = useState('');
   const [isStudent, setIsStudent] = useState(true);
+  const navigate = useNavigate();
 
   const validateConfirmPassword = (_, value) => {
     if (value === password) {
@@ -19,9 +21,10 @@ const Signup = () => {
     return Promise.reject(new Error('As senhas não são iguais!'));
   };
 
-  const handleSwitchChange = (checked) => {
-    setIsStudent(checked);
-  };
+
+  // const handleUserTypeChange = (value) => {
+  //   setUserType(value); // Atualiza o tipo de usuário conforme o dropdown
+  // };
 
   const handleSubmit = async (values) => {
     // Remover formatação do CPF
@@ -51,8 +54,12 @@ const Signup = () => {
     }
   };
 
+  const handleLogin = () => {
+    navigate('/auth/login')
+  }
+
   const buttons = [
-    <Button type='link' className='text-custom-light-blue'>
+    <Button type='link' onClick={handleLogin} className='text-custom-light-blue' >
       Login
     </Button>
   ]
@@ -76,21 +83,12 @@ const Signup = () => {
               </Col>
               <Col span={12}>
                 <div className='flex items-center justify-center h-full'>
-                  <h1 className="text-4xl text-balance text-left font-bold">
-                    {isStudent ? "ProMonitor Alunos" : "ProMonitor Funcionários"}
+                  <h1 className="text-4xl text-balance text-left font-bold ml-10">
+                    {"ProMonitor"}
                   </h1>
                 </div>
               </Col>
             </Row>
-            <div className="mt-8">
-              <Switch 
-                className='bg-custom-dark-blue' 
-                checkedChildren="Sou Aluno" 
-                unCheckedChildren="Sou Funcionário" 
-                defaultChecked 
-                onChange={handleSwitchChange}
-              />
-            </div>
           </div>
         </Col>
 
@@ -200,6 +198,25 @@ const Signup = () => {
                 </Form.Item>
               </Col>
             </Row>
+            {/* <Row>
+              <Col span={24}>
+                <Form.Item
+                  label="Tipo de usuário"
+                  name="type"
+                >
+                  <Select 
+                    defaultValue="aluno" 
+                    onChange={handleUserTypeChange} 
+                    className="w-full"
+                  >
+                    <Option value="aluno">Aluno</Option>
+                    <Option value="professor">Professor</Option>
+                    <Option value="monitor">Monitor</Option>
+                    <Option value="coordenador">Coordenador</Option>
+                  </Select>
+                </Form.Item>
+              </Col>
+            </Row> */}
 
             <Button type="primary" className="w-full mt-4 bg-custom-dark-blue" htmlType="submit">Entrar</Button>
           </Form>

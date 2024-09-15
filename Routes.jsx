@@ -7,6 +7,7 @@ import VerificarCodigo from './src/pages/auth/login/VerificarCodigo.jsx';
 import LandingPage from './src/pages/dashboard/LandingPage.jsx';
 import CriarEdital from './src/pages/professor/CriarEdital.jsx';
 import AlterarDadosAluno from './src/pages/estudante/AlterarDadosAluno.jsx';
+import HomeProfessor from './src/pages/professor/HomeProfessor.jsx';
 
 function AppRoutes() {
   return (
@@ -17,8 +18,9 @@ function AppRoutes() {
         <Route path="/auth/login" element={<Login />} />
         <Route path="/auth/password-recovery" element={<RecuperarSenha />} />
         <Route path="/auth/password-recovery/verify-code" element={<VerificarCodigo />} />
-        <Route path="/student/update-data" element={<AlterarDadosAluno />} />
-        <Route path="/teacher/create-edital" element={<CriarEdital />} />
+        <Route path="/aluno/atualizar-dados" element={<AlterarDadosAluno />} />
+        <Route path="/professor/criar-edital" element={<CriarEdital />} />
+        <Route path="/professor" element={<HomeProfessor />} />
       </Routes>
     </Router>
   );
