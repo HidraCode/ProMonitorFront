@@ -1,12 +1,12 @@
 import React from 'react';
-import AppHeader from '../components/layout/Header.jsx';
+import AppHeader from '../../components/layout/AppHeader.jsx';
 import { useNavigate } from 'react-router-dom';
 
 const LandingPage = () => {
   const navigate = useNavigate(); // Initialize useNavigate
 
   const handleSignUpClick = () => {
-    navigate('api/auth/signup'); // Navigate to the signup page
+    navigate('/auth/signup'); // Navigate to the signup page
   };
 
   return (

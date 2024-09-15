@@ -11,6 +11,8 @@ import EditaisDisponiveisAluno from './src/pages/student/EditaisDisponiveisAluno
 import MonitoresDisponiveisAluno from './src/pages/student/MonitoresDisponiveisAluno.jsx';
 import HomeStudent from './src/pages/student/HomeStudent.jsx';
 import AcompanharSelecao from './src/pages/student/AcompanharSelecao.jsx';
+import HomeProfessor from './src/pages/professor/HomeProfessor.jsx';
+import HomeProfessor from './src/pages/professor/HomeProfessor.jsx';
 
 function AppRoutes() {
   return (
@@ -28,6 +30,7 @@ function AppRoutes() {
         <Route path="/student/monitores-disponiveis" element={<MonitoresDisponiveisAluno />} />
         <Route path="/student/acompanhar-selecao" element={<AcompanharSelecao />} />
         <Route path="/professor/create-edital" element={<EditalForm />} />
+        <Route path="/professor" element={<HomeProfessor />} />
       </Routes>
     </Router>
   );
