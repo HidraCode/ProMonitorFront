@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { Form, Input, Button, DatePicker, Modal } from 'antd';
-import { DeleteOutlined, ArrowLeftOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom'; // Importando useNavigate
 import moment from 'moment';
-// import AppHeader from '../../components/layout/Header';
+import { HomeOutlined, FileOutlined, TeamOutlined, OrderedListOutlined, BellOutlined, ArrowLeftOutlined, DeleteOutlined } from '@ant-design/icons'
+import { FaCircleUser } from "react-icons/fa6";
+import AppHeader from '../../components/layout/AppHeader';
+import Sidemenu from '../../components/layout/Sidemenu';
+import SidemenuItem from '../../components/layout/SidemenuItem';
 
 const AlterarDadosAluno = () => {
   const [form] = Form.useForm();
@@ -71,17 +74,46 @@ const AlterarDadosAluno = () => {
     );
   };
 
+  const sidemenuItems = [
+    <SidemenuItem icon={<HomeOutlined />} label="Home" />,
+    <SidemenuItem icon={<FileOutlined />} label="Novos Editais" />,
+    <SidemenuItem icon={<TeamOutlined />} label="Monitores" />,
+    <SidemenuItem icon={<OrderedListOutlined />} label="Seleção" />
+  ]
+
+  const headerButtons = [
+    <>
+      <Button
+        type="link"
+        className="text-white hover:text-gray-300"
+        icon={ <BellOutlined style={{ fontSize:'20px' }} /> }
+        onClick={null}
+      >
+      </Button>
+      <Button
+        type="link"
+        className="text-white hover:text-gray-300"
+        icon={ <FaCircleUser className='w-6 h-6' /> }
+        onClick={null}
+      >
+      </Button>
+    </>
+  ]
+
   return (
     <div className="flex flex-col min-h-screen bg-white">
-      <div className="flex justify-between items-center p-4 bg-white mb-8">
-        <Button
-          onClick={() => navigate('/student/home')} // Navega para /student/home
-          className="flex items-center bg-gray-200 px-4 py-2 rounded-lg text-gray-800"
-        >
-          <ArrowLeftOutlined />
-          <span className="ml-2 text-sm sm:text-base">Voltar</span>
-        </Button>
-        <div></div> {/* Placeholder to align button to the left */}
+      <AppHeader logoColor={null} sideMenu={<Sidemenu items={sidemenuItems} />} buttons={headerButtons} />
+      <div className="sticky top-0 left-0 w-full bg-gray-50 py-4">
+        <div className="flex items-center justify-start max-w-4xl mx-auto">
+          <Button
+          type="link"
+            onClick={() => navigate("/aluno")}
+            className="flex items-center px-4 py-2 rounded-lg text-gray-800"
+          >
+            <ArrowLeftOutlined />
+            <span className="ml-2 text-sm sm:text-base">Voltar</span>
+          </Button>
+        </div>
       </div>
 
       <div className="flex flex-col items-center justify-center flex-grow bg-white">

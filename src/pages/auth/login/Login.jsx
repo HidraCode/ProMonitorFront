@@ -48,11 +48,11 @@ const Login = () => {
 
   // Funções para redirecionar para as páginas específicas
   const handleForgotPassword = () => {
-    navigate('/auth/password-recovery');
+    navigate('/auth/recuperar-senha');
   };
 
   const handleSignupRedirect = () => {
-    navigate('/auth/signup');
+    navigate('/auth/cadastro');
   };
 
   return (

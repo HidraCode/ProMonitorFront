@@ -1,41 +1,73 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Image } from 'antd';
+import { Image, Button } from 'antd';
+import { HomeOutlined, FileOutlined, TeamOutlined, OrderedListOutlined, BellOutlined } from '@ant-design/icons'
+import { FaCircleUser } from "react-icons/fa6";
 import logo from "../../../public/logo.svg";
+import AppHeader from '../../components/layout/AppHeader';
+import Sidemenu from '../../components/layout/Sidemenu';
+import SidemenuItem from '../../components/layout/SidemenuItem';
 
-const HomeStudent = () => {
+const HomeAluno = () => {
   const navigate = useNavigate();
 
   // Funções de navegação
   const handleUpdateProfile = () => {
-    navigate('/student/update-data');
+    navigate('/aluno/atualizar-dados');
   };
 
   const handleViewEditais = () => {
-    navigate('/student/editais');
+    navigate('/aluno/editais');
   };
 
   const handleViewMonitores = () => {
-    navigate('/student/monitores-disponiveis');
+    navigate('/aluno/monitores-disponiveis');
   };
 
   const handleAcompanharSelecao = () => {
-    navigate('/student/acompanhar-selecao');
+    navigate('/aluno/acompanhar-selecao');
   };
 
+  const sidemenuItems = [
+    <SidemenuItem icon={<HomeOutlined />} label="Home" />,
+    <SidemenuItem icon={<FileOutlined />} label="Novos Editais" />,
+    <SidemenuItem icon={<TeamOutlined />} label="Monitores" />,
+    <SidemenuItem icon={<OrderedListOutlined />} label="Seleção" />
+  ]
+
+  const headerButtons = [
+    <>
+      <Button
+        type="link"
+        className="text-white hover:text-gray-300"
+        icon={ <BellOutlined style={{ fontSize:'20px' }} /> }
+        onClick={null}
+      >
+      </Button>
+      <Button
+        type="link"
+        className="text-white hover:text-gray-300"
+        icon={ <FaCircleUser className='w-6 h-6' /> }
+        onClick={null}
+      >
+      </Button>
+    </>
+  ]
+
   return (
+    <>
     <div className="bg-white h-screen w-screen flex flex-col">
+    <AppHeader logoColor={null} sideMenu={<Sidemenu items={sidemenuItems} />} buttons={headerButtons} />
       <div className="flex-grow flex items-center justify-center">
         <div className="text-center max-w-3xl px-6">
-          
+
           {/* Logo e título */}
           <div className="flex flex-col sm:flex-row items-center justify-center sm:space-x-4">
-            <Image 
-              src={logo} 
-              preview={false} 
-              width={150} 
-              style={{ filter: 'brightness(0) saturate(100%) invert(0%)' }} 
-            />
+            <Image
+              src={logo}
+              preview={false}
+              width={150}
+              style={{ filter: 'brightness(0) saturate(100%) invert(0%)' }} />
             <div className="mt-4 sm:mt-0 text-center sm:text-left">
               {/* Título da página */}
               <h1 className="text-3xl font-bold text-gray-900 sm:text-4xl md:text-5xl">
@@ -51,7 +83,7 @@ const HomeStudent = () => {
 
           {/* Botões de ação */}
           <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:gap-6 sm:justify-center">
-            
+
             {/* Botão para Atualizar Perfil */}
             <button
               onClick={handleUpdateProfile}
@@ -59,7 +91,7 @@ const HomeStudent = () => {
             >
               Atualizar Perfil
             </button>
-            
+
             {/* Botão para Visualizar Editais */}
             <button
               onClick={handleViewEditais}
@@ -87,7 +119,8 @@ const HomeStudent = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
-export default HomeStudent;
+export default HomeAluno;

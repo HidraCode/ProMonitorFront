@@ -2,7 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Card, Input, Button } from "antd"; // Importando Button aqui
-import { ArrowLeftOutlined, UserOutlined } from "@ant-design/icons";
+import { HomeOutlined, FileOutlined, TeamOutlined, OrderedListOutlined, BellOutlined, ArrowLeftOutlined, UserOutlined } from '@ant-design/icons'
+import { FaCircleUser } from "react-icons/fa6";
+import AppHeader from '../../components/layout/AppHeader';
+import Sidemenu from '../../components/layout/Sidemenu';
+import SidemenuItem from '../../components/layout/SidemenuItem';
 
 // Mensagem de erro padrão em caso de falha na conexão com a API
 const ErroMonitor = {
@@ -42,14 +46,42 @@ const MonitoresDisponiveisAluno = () => {
     monitor.disciplina.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  const sidemenuItems = [
+    <SidemenuItem icon={<HomeOutlined />} label="Home" />,
+    <SidemenuItem icon={<FileOutlined />} label="Novos Editais" />,
+    <SidemenuItem icon={<TeamOutlined />} label="Monitores" />,
+    <SidemenuItem icon={<OrderedListOutlined />} label="Seleção" />
+  ]
+
+  const headerButtons = [
+    <>
+      <Button
+        type="link"
+        className="text-white hover:text-gray-300"
+        icon={ <BellOutlined style={{ fontSize:'20px' }} /> }
+        onClick={null}
+      >
+      </Button>
+      <Button
+        type="link"
+        className="text-white hover:text-gray-300"
+        icon={ <FaCircleUser className='w-6 h-6' /> }
+        onClick={null}
+      >
+      </Button>
+    </>
+  ]
+
   return (
-    <div className="flex flex-col min-h-screen bg-gray-50 p-4">
+    <div className="flex flex-col min-h-screen bg-gray-50">
+      <AppHeader logoColor={null} sideMenu={<Sidemenu items={sidemenuItems} />} buttons={headerButtons} />
       {/* Botão de Voltar fixado no topo */}
-      <div className="sticky top-0 left-0 w-full bg-gray-50 z-10 py-4">
+      <div className="sticky top-0 left-0 w-full bg-gray-50 py-4">
         <div className="flex items-center justify-start max-w-4xl mx-auto">
           <Button
-            onClick={() => navigate("/student/home")}
-            className="flex items-center bg-gray-200 px-4 py-2 rounded-lg text-gray-800"
+          type="link"
+            onClick={() => navigate("/aluno")}
+            className="flex items-center px-4 py-2 rounded-lg text-gray-800"
           >
             <ArrowLeftOutlined />
             <span className="ml-2 text-sm sm:text-base">Voltar</span>
