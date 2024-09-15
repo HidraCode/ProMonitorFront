@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Form, Input, Button, DatePicker, Select, Modal } from 'antd';
-import { DeleteOutlined, BellOutlined, HomeOutlined, EditOutlined, FileAddOutlined, OrderedListOutlined, UploadOutlined } from '@ant-design/icons';
+import { DeleteOutlined, BellOutlined, HomeOutlined, EditOutlined, FileAddOutlined, OrderedListOutlined, UploadOutlined, ArrowLeftOutlined } from '@ant-design/icons';
 import { FaCircleUser } from "react-icons/fa6";
 import AppHeader from '../../components/layout/AppHeader';
 import Sidemenu from '../../components/layout/Sidemenu';
@@ -46,7 +46,7 @@ const CriarEdital = () => {
   const handleCancel = () => {
     setIsModalOpen(false); // Fecha o modal sem enviar o formulário
   };
-  const buttons = [
+  const headerButtons = [
     <>
       <Button
         type="link"
@@ -75,9 +75,10 @@ const CriarEdital = () => {
 
   return (
     <>
-    <AppHeader buttons={buttons} sideMenu={<Sidemenu items={sidemenuItems} />} />
     <div>
       {/* <AppHeader /> */}
+      <AppHeader buttons={headerButtons} sideMenu={<Sidemenu items={sidemenuItems} />} /> 
+      </div>
       <div className="flex flex-col items-center justify-center min-h-screen bg-white p-4 md:my-0 my-16">
         <div className="text-center mb-6">
           <h2 className="text-2xl font-semibold">Lançar Editais de Monitoria</h2>
@@ -152,7 +153,6 @@ const CriarEdital = () => {
           </Modal>
         </div>
       </div>
-    </div>
     </>
   );
 };

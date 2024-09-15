@@ -8,7 +8,7 @@ import AppHeader from '../../../components/layout/AppHeader.jsx';
 import { createUser } from '../../../services/signupService.js';
 import { Navigate, useNavigate } from 'react-router-dom';
 
-const Signup = () => {  
+const Cadastro = () => {  
   const [form] = Form.useForm();
   const [password, setPassword] = useState('');
   const [isStudent, setIsStudent] = useState(true);
@@ -227,4 +227,4 @@ const Signup = () => {
   );
 }
 
-export default Signup;
+export default Cadastro;

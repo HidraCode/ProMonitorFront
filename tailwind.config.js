@@ -6,9 +6,13 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'custom-dark-blue': '#0F1035',
+        'custom-dark-blue': '#0F1035',  // Exemplo de cor já adicionada
         'custom-light-blue': '#7FC7D9',
-        'custom-blue': '#365486'
+        'custom-blue': '#365486',
+        'enviado-gray': '#A0AEC0',      // Cor personalizada para 'enviado'
+        'recusado-red': '#F56565',      // Cor personalizada para 'recusado'
+        'aprovado-green': '#48BB78',    // Cor personalizada para 'aprovado'
+        'em-analise-yellow': '#ECC94B'  // Cor personalizada para 'em análise'
       },
     },
   },

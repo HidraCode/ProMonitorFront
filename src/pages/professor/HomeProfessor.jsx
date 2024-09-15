@@ -1,12 +1,15 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import AppHeader from "../../components/layout/AppHeader"
 import Sidemenu from "../../components/layout/Sidemenu";
 import SidemenuItem from "../../components/layout/SidemenuItem";
 import { Button } from "antd";
-import { HomeOutlined, EditOutlined, FileAddOutlined, OrderedListOutlined, UploadOutlined, BellOutlined } from '@ant-design/icons';
+import { HomeOutlined, EditOutlined, FileAddOutlined, OrderedListOutlined, UploadOutlined, BellOutlined, ArrowLeftOutlined } from '@ant-design/icons';
 import { FaCircleUser } from "react-icons/fa6";
 
 const HomeProfessor = () => {
+
+  const navigate = useNavigate()
 
   const sidemenuItems = [
     <SidemenuItem icon={<HomeOutlined />} label="Home" />,
@@ -36,7 +39,10 @@ const HomeProfessor = () => {
   ]
 
 return (
+  <div>
   <AppHeader logoColor={null} sideMenu={<Sidemenu items={sidemenuItems} />} buttons={headerButtons}/>
+   
+  </div>
 )
 }
 export default HomeProfessor

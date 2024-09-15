@@ -6,7 +6,7 @@ const LandingPage = () => {
   const navigate = useNavigate(); // Initialize useNavigate
 
   const handleSignUpClick = () => {
-    navigate('/auth/signup'); // Navigate to the signup page
+    navigate('/auth/cadastro'); // Navigate to the signup page
   };
 
   return (
