@@ -54,11 +54,11 @@ const Login = () => {
 
   // Funções de redirecionamento
   const handleSignupRedirect = () => {
-    navigate('/signup'); // Exemplo de redirecionamento para cadastro
+    navigate('/auth/cadastro'); // Redireciona para a página de cadastro
   };
 
   const handleForgotPassword = () => {
-    navigate('/forgot-password'); // Exemplo de redirecionamento para recuperação de senha
+    navigate('/auth/recuperar-senha'); // Redireciona para a página de recuperação de senha
   };
 
   return (
