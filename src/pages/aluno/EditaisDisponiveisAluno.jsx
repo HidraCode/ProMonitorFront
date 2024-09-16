@@ -27,7 +27,7 @@ const EditaisDisponiveis = () => {
   useEffect(() => {
     const fetchEditais = async () => {
       try {
-        const response = await axios.get("/api/editais");
+        const response = await axios.get("http://localhost:3000/api/editais");
         if (Array.isArray(response.data)) {
           setEditais(response.data);
         } else {
