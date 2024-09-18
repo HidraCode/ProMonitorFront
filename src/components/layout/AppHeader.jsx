@@ -23,7 +23,7 @@ const AppHeader = ({ logoColor, sideMenu, buttons }) => {
   };
 
   return (
-    <Header className="z-10 h-16 w-full bg-custom-dark-blue flex justify-between items-center px-4 sm:px-6">
+    <Header className="z-10 h-16 w-full min-w-full bg-custom-dark-blue flex justify-between items-center px-4 sm:px-6">
       {sideMenu && <div>{sideMenu}</div>}
       <div className="flex items-center cursor-pointer" onClick={handleLogoClick}>
         {/* Prop para escolher entre os diferentes tipos de logo */}
