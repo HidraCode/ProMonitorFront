@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Card, Button } from "antd";
-import { HomeOutlined, FileOutlined, TeamOutlined, OrderedListOutlined, BellOutlined, ArrowLeftOutlined } from '@ant-design/icons'
+import { HomeOutlined, FileOutlined, TeamOutlined, OrderedListOutlined, BellOutlined } from '@ant-design/icons'
 import { FaCircleUser } from "react-icons/fa6";
 import AppHeader from '../../components/layout/AppHeader';
 import Sidemenu from '../../components/layout/Sidemenu';
 import SidemenuItem from '../../components/layout/SidemenuItem';
+import BackButton from "../../components/layout/BackButton";
 
 // Estados possíveis para o processo de seleção
 const estadosCores = {
@@ -50,10 +51,10 @@ const AcompanharSelecao = () => {
   }, []);
 
   const sidemenuItems = [
-    <SidemenuItem icon={<HomeOutlined />} label="Home" />,
-    <SidemenuItem icon={<FileOutlined />} label="Novos Editais" />,
-    <SidemenuItem icon={<TeamOutlined />} label="Monitores" />,
-    <SidemenuItem icon={<OrderedListOutlined />} label="Seleção" />
+    <SidemenuItem icon={<HomeOutlined />} path={"/aluno"} label="Home" />,
+    <SidemenuItem icon={<FileOutlined />} path={"/aluno/editais"} label="Novos Editais" />,
+    <SidemenuItem icon={<TeamOutlined />} path={"/aluno/monitores-disponiveis"} label="Monitores" />,
+    <SidemenuItem icon={<OrderedListOutlined />} path={"/aluno/acompanhar-selecao"} label="Seleção" />
   ]
 
   const headerButtons = [
@@ -79,18 +80,7 @@ const AcompanharSelecao = () => {
     <div className="flex flex-col min-h-screen bg-gray-50">
       <AppHeader logoColor={null} sideMenu={<Sidemenu items={sidemenuItems} />} buttons={headerButtons} />
       {/* Botão de Voltar fixado no topo */}
-      <div className="sticky top-0 left-0 w-full bg-gray-50 py-4">
-        <div className="flex items-center justify-start max-w-4xl mx-auto">
-          <Button
-            type="link"
-            onClick={() => navigate("/aluno")}
-            className="flex items-center px-4 py-2 rounded-lg text-gray-800"
-          >
-            <ArrowLeftOutlined />
-            <span className="ml-2 text-sm sm:text-base">Voltar</span>
-          </Button>
-        </div>
-      </div>
+      <BackButton path="/aluno" />
 
       <div className="w-full max-w-4xl mx-auto py-8">
         <div className="w-full p-4 bg-white rounded-lg shadow-md">
