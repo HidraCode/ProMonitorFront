@@ -7,7 +7,7 @@ export const loginUserService = async (values) => {
         const response = await axios.post('http://localhost:3000/api/auth/login', {
             email: values.email,
             senha: values.senha,
-            tipo_usuario: values.tipo_usuario, // Inclua o tipo de usuário
+            tipo_usuario: values.tipo_usuario, 
         });
 
         // Se o login for bem-sucedido, o back-end deve retornar um token ou informações do usuário

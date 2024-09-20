@@ -4,36 +4,35 @@ import { Button, Checkbox, Form, Input, Select, Row, Col } from 'antd';
 import { AiOutlineEye, AiFillEye } from 'react-icons/ai';
 import { useNavigate } from 'react-router-dom'; // Importa o useNavigate
 import AppHeader from '../../../components/layout/AppHeader.jsx';
-import { loginUserService } from '../../../services/loginUserService.js'; // Certifique-se de ajustar o caminho
+import { loginUserService } from '../../../services/loginUserService.js'; 
 
 const { Option } = Select;
-
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [form] = Form.useForm();
   const [userType, setUserType] = useState('aluno'); // Adiciona controle para o tipo de usuário
   const navigate = useNavigate(); // Inicializa o hook useNavigate
 
+  // Alterna a visibilidade da senha
   const handleTogglePassword = () => {
     setShowPassword(!showPassword);
   };
 
+  // Atualiza o tipo de usuário conforme o dropdown
   const handleUserTypeChange = (value) => {
-    setUserType(value); // Atualiza o tipo de usuário conforme o dropdown
+    setUserType(value);
   };
 
+  // Envia os dados de login
   const handleLoginSubmit = async (values) => {
     try {
-      // Adiciona o tipo de usuário aos valores do formulário
       const formData = {
         ...values,
         tipo_usuario: userType,
       };
-
-      console.log('Dados enviados:', formData); // Adicione este console.log para verificar os dados
-
-      // Envia os dados atualizados ao backend
+  
       const response = await loginUserService(formData);
+
       console.log('Login bem-sucedido:', response);
 
       // Salva o codigo_usuario e token
@@ -42,21 +41,31 @@ const Login = () => {
       
       // Reseta os campos do formulário após o envio bem-sucedido
       form.resetFields();
-      
-      // Aqui você pode redirecionar o usuário ou armazenar o token
+  
+      if (response.role === 'aluno') {
+        navigate('/aluno'); // Redireciona para a rota correta do aluno
+      } else if (response.role === 'professor') {
+        navigate('/professor'); // Redireciona para a rota correta do professor
+      } else if (response.role === 'monitor') {
+        navigate('/monitor'); // Se houver rota para monitor, configure-a
+      } else if (response.role === 'coordenador') {
+        navigate('/coordenador'); // Se houver rota para coordenador, configure-a
+      } else {
+        alert('Tipo de usuário desconhecido.');
+      }
     } catch (error) {
-      console.error('Erro ao fazer login:', error.message);
-      // Trate o erro, por exemplo, mostrando uma mensagem ao usuário
+      console.error('Erro ao fazer login:', error);
+      alert('Houve um problema ao fazer login. Verifique suas credenciais e tente novamente.');
     }
   };
 
-  // Funções para redirecionar para as páginas específicas
-  const handleForgotPassword = () => {
-    navigate('/auth/recuperar-senha');
+  // Funções de redirecionamento
+  const handleSignupRedirect = () => {
+    navigate('/auth/cadastro'); // Redireciona para a página de cadastro
   };
 
-  const handleSignupRedirect = () => {
-    navigate('/auth/cadastro');
+  const handleForgotPassword = () => {
+    navigate('/auth/recuperar-senha'); // Redireciona para a página de recuperação de senha
   };
 
   return (
