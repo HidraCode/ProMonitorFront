@@ -6,14 +6,17 @@ import AppHeader from '../../components/layout/AppHeader';
 import Sidemenu from '../../components/layout/Sidemenu';
 import SidemenuItem from '../../components/layout/SidemenuItem';
 import moment from 'moment';
+import { createEditalService } from '../../services/createEditalService';
+import { useNavigate } from 'react-router-dom';
 
 const { RangePicker } = DatePicker;
 
 const CriarEdital = () => {
   const [form] = Form.useForm(); // Hook para manipular o formulário
   const [isModalOpen, setIsModalOpen] = useState(false); // Estado para controlar a visibilidade do modal
+  const navigate = useNavigate();
 
-  const onFinish = (values) => {
+  const onFinish = async (values) => {
     const { periodo, ...rest } = values;
     const data_inicio = periodo ? moment(periodo[0]).format('YYYY-MM-DD') : null;
     const data_fim = periodo ? moment(periodo[1]).format('YYYY-MM-DD') : null;
@@ -25,7 +28,19 @@ const CriarEdital = () => {
     };
 
     console.log('Form data:', formData);
-    // Aqui você pode fazer a requisição para a API com o formData
+    
+    try {
+      // Chama o serviço para criar edital
+      await createEditalService(formData);
+
+      console.log('Edital criado com sucesso!');
+      
+      // Redireciona o professor para a home
+      navigate('/professor');
+      
+    } catch (error) {
+      console.error('Erro ao criar edital: ' + error.message);
+    }
 
     onReset(); // Reseta os campos após o envio
   };
@@ -99,6 +114,13 @@ const CriarEdital = () => {
                   rules={[{ required: true, message: 'Por favor, insira o título do edital' }]}
                 >
                   <Input placeholder="Escreva o título do edital" />
+                </Form.Item>
+                <Form.Item
+                  name="disciplina"
+                  label="Disciplina"
+                  rules={[{ required: true, message: 'Por favor, insira o nome da disciplina' }]}
+                >
+                  <Input placeholder="Nome da disciplina" />
                 </Form.Item>
                 <Form.Item
                   name="periodo"
