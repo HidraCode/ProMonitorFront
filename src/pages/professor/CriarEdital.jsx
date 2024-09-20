@@ -81,11 +81,11 @@ const CriarEdital = () => {
   ]
 
   const sidemenuItems = [
-    <SidemenuItem icon={<HomeOutlined />} label="Home" />,
-    <SidemenuItem icon={<EditOutlined />} label="Análises" />,
-    <SidemenuItem icon={<FileAddOutlined />} label="Atribuições" />,
-    <SidemenuItem icon={<OrderedListOutlined />} label="Selecionamento" />,
-    <SidemenuItem icon={<UploadOutlined />} label="Lançar Edital" />
+    <SidemenuItem icon={<HomeOutlined />} path={"/professor"} label="Home" />,
+    <SidemenuItem icon={<EditOutlined />} path={"/professor/analises"} label="Análises" />,
+    <SidemenuItem icon={<FileAddOutlined />} path={"/professor/atribuir"} label="Atribuições" />,
+    <SidemenuItem icon={<OrderedListOutlined />} path={"/professor/selecao"} label="Selecionamento" />,
+    <SidemenuItem icon={<UploadOutlined />} path={"/professor/criar-edital"} label="Lançar Edital" />
   ];
 
   return (

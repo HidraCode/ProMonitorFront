@@ -3,13 +3,13 @@ import AppHeader from "../../components/layout/AppHeader";
 import Sidemenu from "../../components/layout/Sidemenu";
 import SidemenuItem from "../../components/layout/SidemenuItem";
 import { Form, Button, DatePicker, Select, Upload, message } from 'antd';
-import { HomeOutlined, UploadOutlined, FileOutlined, TeamOutlined, OrderedListOutlined, BellOutlined } from '@ant-design/icons';
+import { HomeOutlined, UploadOutlined, FileAddOutlined, EditOutlined, OrderedListOutlined, BellOutlined } from '@ant-design/icons';
 import { FaCircleUser } from "react-icons/fa6";
 import BackButton from "../../components/layout/BackButton";
 import TextArea from "antd/es/input/TextArea";
 import axios from 'axios';  // Import axios para requisições
 
-const AtribuirTarefa = () => {
+const AtribuirMaterial = () => {
   const [form] = Form.useForm(); // Hook para manipular o formulário
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [fileList, setFileList] = useState([]); // Estado para armazenar arquivos
@@ -72,10 +72,11 @@ const AtribuirTarefa = () => {
   ];
 
   const sidemenuItems = [
-    <SidemenuItem icon={<HomeOutlined />} label="Home" />,
-    <SidemenuItem icon={<FileOutlined />} label="Novos Editais" />,
-    <SidemenuItem icon={<TeamOutlined />} label="Monitores" />,
-    <SidemenuItem icon={<OrderedListOutlined />} label="Seleção" />
+    <SidemenuItem icon={<HomeOutlined />} path={"/professor"} label="Home" />,
+    <SidemenuItem icon={<EditOutlined />} path={"/professor/analises"} label="Análises" />,
+    <SidemenuItem icon={<FileAddOutlined />} path={"/professor/atribuicoes"} label="Atribuições" />,
+    <SidemenuItem icon={<OrderedListOutlined />} path={"/professor/selecao"} label="Selecionamento" />,
+    <SidemenuItem icon={<UploadOutlined />} path={"/professor/criar-edital"} label="Lançar Edital" />
   ];
 
   return(
@@ -86,7 +87,7 @@ const AtribuirTarefa = () => {
 
         <div className="flex flex-col items-center justify-center flex-grow bg-white">
           <div className="text-center mb-6">
-            <h2 className="text-2xl font-semibold text-custom-blue">Atribuir Tarefa</h2>
+            <h2 className="text-2xl font-semibold text-custom-blue">Atribuir Material de Apoio</h2>
           </div>
           <div className="w-full max-w-4xl mx-auto p-4 bg-white rounded-lg">
             <Form
@@ -154,4 +155,4 @@ const AtribuirTarefa = () => {
   );
 }
 
-export default AtribuirTarefa;
+export default AtribuirMaterial;

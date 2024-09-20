@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import AppHeader from "../../components/layout/AppHeader";
 import Sidemenu from "../../components/layout/Sidemenu";
 import SidemenuItem from "../../components/layout/SidemenuItem";
-import { Form, Input, Button, DatePicker, Modal, Select, Upload, message } from 'antd';
-import { HomeOutlined, UploadOutlined, FileOutlined, TeamOutlined, OrderedListOutlined, BellOutlined } from '@ant-design/icons';
+import { Form, Button, DatePicker, Select, Upload, message } from 'antd';
+import { HomeOutlined, UploadOutlined, FileAddOutlined, OrderedListOutlined, BellOutlined, EditOutlined } from '@ant-design/icons';
 import { FaCircleUser } from "react-icons/fa6";
 import BackButton from "../../components/layout/BackButton";
 import TextArea from "antd/es/input/TextArea";
@@ -11,7 +11,6 @@ import axios from 'axios';  // Import axios para requisições
 
 const AtribuirTarefa = () => {
   const [form] = Form.useForm(); // Hook para manipular o formulário
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [fileList, setFileList] = useState([]); // Estado para armazenar arquivos
 
   // Manipulador de arquivos para upload
@@ -69,13 +68,14 @@ const AtribuirTarefa = () => {
       >
       </Button>
     </>
-  ];
+  ]
 
   const sidemenuItems = [
-    <SidemenuItem icon={<HomeOutlined />} label="Home" />,
-    <SidemenuItem icon={<FileOutlined />} label="Novos Editais" />,
-    <SidemenuItem icon={<TeamOutlined />} label="Monitores" />,
-    <SidemenuItem icon={<OrderedListOutlined />} label="Seleção" />
+    <SidemenuItem icon={<HomeOutlined />} path={"/professor"} label="Home" />,
+    <SidemenuItem icon={<EditOutlined />} path={"/professor/analises"} label="Análises" />,
+    <SidemenuItem icon={<FileAddOutlined />} path={"/professor/atribuicoes"} label="Atribuições" />,
+    <SidemenuItem icon={<OrderedListOutlined />} path={"/professor/selecao"} label="Selecionamento" />,
+    <SidemenuItem icon={<UploadOutlined />} path={"/professor/criar-edital"} label="Lançar Edital" />
   ];
 
   return(
