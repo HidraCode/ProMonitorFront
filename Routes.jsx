@@ -16,6 +16,7 @@ import AcompanharSelecao from './src/pages/aluno/AcompanharSelecao.jsx';
 
 import CriarEdital from './src/pages/professor/CriarEdital.jsx';
 import HomeProfessor from './src/pages/professor/HomeProfessor.jsx';
+import AtribuirTarefa from './src/pages/professor/AtribuirTarefa.jsx';
 
 function AppRoutes() {
   return (
@@ -33,6 +34,7 @@ function AppRoutes() {
         <Route path="/aluno/acompanhar-selecao" element={<AcompanharSelecao />} />
         <Route path="/professor" element={<HomeProfessor />} />
         <Route path="/professor/criar-edital" element={<CriarEdital />} />
+        <Route path="/professor/atribuir-tarefa" element={<AtribuirTarefa />} />
       </Routes>
     </Router>
   );

@@ -32,7 +32,14 @@ const Login = () => {
       };
   
       const response = await loginUserService(formData);
-  
+
+      console.log('Login bem-sucedido:', response);
+
+      // Salva o codigo_usuario e token
+      localStorage.setItem('codigo_usuario', response.codigo_usuario);
+      localStorage.setItem('token', response.token);
+      
+      // Reseta os campos do formulário após o envio bem-sucedido
       form.resetFields();
   
       if (response.role === 'aluno') {

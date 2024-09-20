@@ -75,10 +75,10 @@ const AlterarDadosAluno = () => {
   };
 
   const sidemenuItems = [
-    <SidemenuItem icon={<HomeOutlined />} label="Home" />,
-    <SidemenuItem icon={<FileOutlined />} label="Novos Editais" />,
-    <SidemenuItem icon={<TeamOutlined />} label="Monitores" />,
-    <SidemenuItem icon={<OrderedListOutlined />} label="Seleção" />
+    <SidemenuItem icon={<HomeOutlined />} path={"/aluno"} label="Home" />,
+    <SidemenuItem icon={<FileOutlined />} path={"/aluno/editais"} label="Novos Editais" />,
+    <SidemenuItem icon={<TeamOutlined />} path={"/aluno/monitores-disponiveis"} label="Monitores" />,
+    <SidemenuItem icon={<OrderedListOutlined />} path={"/aluno/acompanhar-selecao"} label="Seleção" />
   ]
 
   const headerButtons = [
