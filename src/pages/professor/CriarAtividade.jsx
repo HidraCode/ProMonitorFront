@@ -2,16 +2,15 @@ import React, { useState } from "react";
 import AppHeader from "../../components/layout/AppHeader";
 import Sidemenu from "../../components/layout/Sidemenu";
 import SidemenuItem from "../../components/layout/SidemenuItem";
-import { Form, Button, DatePicker, Select, Upload, message } from 'antd';
-import { HomeOutlined, UploadOutlined, FileAddOutlined, EditOutlined, OrderedListOutlined, BellOutlined } from '@ant-design/icons';
+import { Form, Button, DatePicker, Select, Upload, message, Input } from 'antd';
+import { HomeOutlined, UploadOutlined, FileAddOutlined, OrderedListOutlined, BellOutlined, EditOutlined, FileOutlined } from '@ant-design/icons';
 import { FaCircleUser } from "react-icons/fa6";
 import BackButton from "../../components/layout/BackButton";
 import TextArea from "antd/es/input/TextArea";
 import axios from 'axios';  // Import axios para requisições
 
-const AtribuirMaterial = () => {
+const AtribuirTarefa = () => {
   const [form] = Form.useForm(); // Hook para manipular o formulário
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [fileList, setFileList] = useState([]); // Estado para armazenar arquivos
 
   // Manipulador de arquivos para upload
@@ -49,7 +48,6 @@ const AtribuirMaterial = () => {
 
   const handleSubmit = () => {
     form.submit(); // Envia o formulário
-    setIsModalOpen(false); // Fecha o modal
   };
 
   const headerButtons = [
@@ -69,15 +67,21 @@ const AtribuirMaterial = () => {
       >
       </Button>
     </>
-  ];
+  ]
 
   const sidemenuItems = [
     <SidemenuItem icon={<HomeOutlined />} path={"/professor"} label="Home" />,
     <SidemenuItem icon={<EditOutlined />} path={"/professor/analises"} label="Análises" />,
-    <SidemenuItem icon={<FileAddOutlined />} path={"/professor/atribuicoes"} label="Atribuições" />,
+    <SidemenuItem icon={<FileAddOutlined />} path={"/professor/atribuir"} label="Atribuições" />,
+    <SidemenuItem icon={<FileOutlined />} path={"/professor/atividades"} label={"Atividades"} />,
     <SidemenuItem icon={<OrderedListOutlined />} path={"/professor/selecao"} label="Selecionamento" />,
     <SidemenuItem icon={<UploadOutlined />} path={"/professor/criar-edital"} label="Lançar Edital" />
   ];
+
+  const selectTypeOptions = [
+    { value: 'tarefa', label: <span>Tarefa</span> },
+    { value: 'material', label: <span>Material de Apoio</span> }
+  ]
 
   return(
     <>
@@ -87,7 +91,7 @@ const AtribuirMaterial = () => {
 
         <div className="flex flex-col items-center justify-center flex-grow bg-white">
           <div className="text-center mb-6">
-            <h2 className="text-2xl font-semibold text-custom-blue">Atribuir Material de Apoio</h2>
+            <h2 className="text-2xl font-semibold text-custom-blue">Atribuir Atividade</h2>
           </div>
           <div className="w-full max-w-4xl mx-auto p-4 bg-white rounded-lg">
             <Form
@@ -100,10 +104,22 @@ const AtribuirMaterial = () => {
               <div className="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0">
                 <div className="flex flex-col w-full md:w-1/2 px-2 md:px-0">
                   <Form.Item
+                    name="tipo"
+                    label="Tipo de atividade"
+                  >
+                    <Select options={selectTypeOptions} placeholder="Selecione a atividade"></Select>
+                  </Form.Item>
+                  <Form.Item    
+                    name="titulo"
+                    label="Título"
+                  >
+                    <Input placeholder="Insira o título"></Input>
+                  </Form.Item>
+                  <Form.Item
                     name="disciplina"
                     label="Disciplina"
                   >
-                    <Select placeholder="Selecione a disciplina" />
+                    <Input placeholder="Insira a disciplina" ></Input>
                   </Form.Item>
                   <Form.Item
                     name="monitor"
@@ -111,6 +127,8 @@ const AtribuirMaterial = () => {
                   >
                     <Select placeholder="Selecione um monitor" />
                   </Form.Item>
+                </div>
+                <div className="flex flex-col w-full md:w-1/2 px-2 md:px-0">
                   <Form.Item
                     name="arquivosAuxiliares"
                     label="Arquivos auxiliares"
@@ -126,8 +144,6 @@ const AtribuirMaterial = () => {
                       </Button>
                     </Upload>
                   </Form.Item>
-                </div>
-                <div className="flex flex-col w-full md:w-1/2 px-2 md:px-0">
                   <Form.Item
                     name="prazo"
                     label="Prazo"
@@ -155,4 +171,4 @@ const AtribuirMaterial = () => {
   );
 }
 
-export default AtribuirMaterial;
+export default AtribuirTarefa;

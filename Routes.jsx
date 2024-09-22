@@ -18,17 +18,19 @@ import AcompanharSelecao from './src/pages/aluno/AcompanharSelecao.jsx';
 
 import CriarEdital from './src/pages/professor/CriarEdital.jsx';
 import HomeProfessor from './src/pages/professor/HomeProfessor.jsx';
-import AtribuirTarefa from './src/pages/professor/AtribuirTarefa.jsx';
-import AtribuirMaterial from './src/pages/professor/AtribuirMaterialDeApoio.jsx';
-import Atribuir from './src/pages/professor/Atribuir.jsx';
+import AtribuirTarefa from './src/pages/professor/CriarAtividade.jsx';
+import Analises from './src/pages/professor/Analises.jsx';
+import VisualizarAtividades from './src/pages/professor/VisualizarAtividades.jsx';
+import VisualizarAtividade from './src/pages/professor/VisualizarAtividade.jsx';
 import FrequenciaProfessor from './src/pages/professor/FrequenciaProfessor.jsx';
+import RelatorioProfessor from './src/pages/professor/RelatorioProfessor.jsx';
+
 
 import HomeMonitor from './src/pages/monitor/HomeMonitor.jsx';
 import TarefaDetalhes from './src/pages/monitor/TarefaDetalhes.jsx'
 import MaterialDetalhes from './src/pages/monitor/MaterialDetalhes.jsx';
 import FrequenciaMonitor from './src/pages/monitor/FrequenciaMonitor.jsx';
 import RelatorioMonitor from './src/pages/monitor/RelatorioMonitor.jsx';
-import RelatorioProfessor from './src/pages/professor/RelatorioProfessor.jsx';
 
 function AppRoutes() {
   return (
@@ -44,17 +46,20 @@ function AppRoutes() {
         <Route path="/aluno/editais" element={<EditaisDisponiveisAluno />} />
         <Route path="/aluno/monitores-disponiveis" element={<MonitoresDisponiveisAluno />} />
         <Route path="/aluno/acompanhar-selecao" element={<AcompanharSelecao />} />
+          
         <Route path="/professor" element={<HomeProfessor />} />
         <Route path="/professor/criar-edital" element={<CriarEdital />} />
-        <Route path="/professor/atribuir" element={<Atribuir />} />
-        <Route path="/professor/atribuir/tarefa" element={<AtribuirTarefa />} />
-        <Route path="/professor/atribuir/material" element={<AtribuirMaterial />} />
+        <Route path="/professor/atribuir" element={<AtribuirTarefa />} />
+        <Route path="/professor/analises" element={<Analises />} />
+        <Route path="/professor/atividades" element={<VisualizarAtividades />} />
+        <Route path="/professor/atividade/:id" element={<VisualizarAtividade />} />
         <Route path='/professor/relatorio/:document_id' element={<RelatorioProfessor/>} />
+        <Route path='/professor/frequencia/:document_id' element={<FrequenciaProfessor/>} />
+        
         <Route path='/monitor/home' element={<HomeMonitor />} />
         <Route path='/monitor/tarefas/:codigo_tarefa' element={<TarefaDetalhes />} />
         <Route path='/monitor/material-de-apoio/:codigo_tarefa' element={<MaterialDetalhes/>} />
         <Route path='/monitor/frequencia' element={<FrequenciaMonitor/>} />
-        <Route path='/professor/frequencia/:document_id' element={<FrequenciaProfessor/>} />
         <Route path='/monitor/relatorio' element={<RelatorioMonitor/>} />
         <Route path='/verificar-documento/:tipo_documento/:document_id' element={<VerificarPDF/>} />        
       </Routes>

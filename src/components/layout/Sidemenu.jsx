@@ -11,7 +11,7 @@ const Sidemenu = ({ items  }) => {
 
   return (
     <div>
-      <Button type={'text'} onClick={toggleMenu} className="p-2 rounded" icon={<MenuOutlined className='text-white w-10 h-10 ' />}>
+      <Button type={'text'} onClick={toggleMenu} className="p-2 rounded" icon={<MenuOutlined className='text-white w-10 h-10 flex justify-center items-center' />}>
       </Button>
       <div className={`fixed inset-0 bg-white bg-opacity-50 transition-opacity ${isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`} onClick={toggleMenu}></div>
       
