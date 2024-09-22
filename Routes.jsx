@@ -18,9 +18,9 @@ import CriarEdital from './src/pages/professor/CriarEdital.jsx';
 import HomeProfessor from './src/pages/professor/HomeProfessor.jsx';
 import AtribuirTarefa from './src/pages/professor/CriarAtividade.jsx';
 import Analises from './src/pages/professor/Analises.jsx';
-import AnaliseCard from './src/components/AnaliseCard.jsx';
-import AtividadeCard from './src/components/AtividadeCard.jsx';
 import VisualizarAtividades from './src/pages/professor/VisualizarAtividades.jsx';
+import VisualizarAtividade from './src/pages/professor/VisualizarAtividade.jsx';
+import MonitorCard from './src/components/MonitorCard.jsx';
 
 function AppRoutes() {
   return (
@@ -41,7 +41,7 @@ function AppRoutes() {
         <Route path="/professor/atribuir" element={<AtribuirTarefa />} />
         <Route path="/professor/analises" element={<Analises />} />
         <Route path="/professor/atividades" element={<VisualizarAtividades />} />
-        <Route path="/temp" element={<AtividadeCard />} />
+        <Route path="/professor/atividade/:id" element={<VisualizarAtividade />} />
       </Routes>
     </Router>
   );

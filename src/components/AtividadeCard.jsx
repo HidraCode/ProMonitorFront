@@ -2,12 +2,20 @@ import { Button, Col, Row } from 'antd';
 import React from 'react';
 import { FaCircleUser } from "react-icons/fa6";
 import { FilePdfOutlined, DownloadOutlined } from "@ant-design/icons"
+import { useNavigate, useParams } from 'react-router-dom';
 
 const AtividadeCard = ({ titulo, conteudo, tipo, professor, data, anexos }) => {
 
+  const navigate = useNavigate()
+  const id = useParams() //coloquem, no lugar do use params, o ip da atividade, exemplo : const id = data.id
+
+  const handleVerDetalhes = () => {
+    navigate("/professor/atividade/{id}")
+  }
+
   return (
     <div className='py-4'>
-        <Row className='border border-gray-300 rounded-lg h-50  p-2'>
+        <Row className='border border-gray-300 rounded-lg h-50  p-2' onClick={handleVerDetalhes}>
           <Col span={20}>
             <Row>
               <Col className='font-semibold'>
