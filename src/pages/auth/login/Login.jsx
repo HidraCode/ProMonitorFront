@@ -38,16 +38,17 @@ const Login = () => {
       // Salva o codigo_usuario e token
       localStorage.setItem('codigo_usuario', response.codigo_usuario);
       localStorage.setItem('token', response.token);
-      
+      sessionStorage.clear(); // Limpa o sessionStorage para impedir a utilização de dados de outros usuários
+
       // Reseta os campos do formulário após o envio bem-sucedido
       form.resetFields();
   
       if (response.role === 'aluno') {
-        navigate('/aluno'); // Redireciona para a rota correta do aluno
+        navigate('/aluno/home'); // Redireciona para a rota correta do aluno
       } else if (response.role === 'professor') {
-        navigate('/professor'); // Redireciona para a rota correta do professor
+        navigate('/professor/home'); // Redireciona para a rota correta do professor
       } else if (response.role === 'monitor') {
-        navigate('/monitor'); // Se houver rota para monitor, configure-a
+        navigate('/monitor/home'); // Se houver rota para monitor, configure-a
       } else if (response.role === 'coordenador') {
         navigate('/coordenador'); // Se houver rota para coordenador, configure-a
       } else {
@@ -79,9 +80,9 @@ const Login = () => {
                 <h2 className="text-2xl font-semibold">Login</h2>
               </Col>
               <Col className="w-1/2">
-                <Select 
-                  defaultValue="aluno" 
-                  onChange={handleUserTypeChange} 
+                <Select
+                  defaultValue="aluno"
+                  onChange={handleUserTypeChange}
                   className="w-full"
                 >
                   <Option value="aluno">Aluno</Option>
@@ -91,9 +92,9 @@ const Login = () => {
                 </Select>
               </Col>
             </Row>
-            
+
             <div className="border-t border-gray-300 my-6" /> {/* Linha divisória */}
-            
+
             <Form
               name="login"
               form={form}
@@ -110,9 +111,9 @@ const Login = () => {
               >
                 <div className="flex flex-col">
                   <div className="text-sm text-gray-700 mb-1">Email:</div>
-                  <Input 
-                    prefix={<UserOutlined />} 
-                    placeholder="Digite seu email" 
+                  <Input
+                    prefix={<UserOutlined />}
+                    placeholder="Digite seu email"
                     className="h-10 pl-4"
                   />
                 </div>
@@ -126,13 +127,13 @@ const Login = () => {
                 <div className="flex flex-col">
                   <div className="text-sm text-gray-700 mb-1">Senha:</div>
                   <div className="relative">
-                    <Input 
-                      prefix={<LockOutlined />} 
-                      type={showPassword ? "text" : "password"} 
-                      placeholder="Digite sua senha" 
+                    <Input
+                      prefix={<LockOutlined />}
+                      type={showPassword ? "text" : "password"}
+                      placeholder="Digite sua senha"
                       className="h-10 pl-4"
                     />
-                    <div 
+                    <div
                       className="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer"
                       onClick={handleTogglePassword}
                     >
@@ -147,8 +148,8 @@ const Login = () => {
                   <Form.Item name="remember" valuePropName="checked" noStyle>
                     <Checkbox>Lembre-se da minha senha!</Checkbox>
                   </Form.Item>
-                  <a 
-                    href="#" 
+                  <a
+                    href="#"
                     className="text-blue-500 hover:underline"
                     onClick={handleForgotPassword} // Adiciona o redirecionamento
                   >
@@ -158,17 +159,17 @@ const Login = () => {
               </Form.Item>
 
               <Form.Item className="text-center">
-                <Button 
-                  block 
-                  type="primary" 
-                  htmlType="submit" 
+                <Button
+                  block
+                  type="primary"
+                  htmlType="submit"
                   className="mb-4 bg-[#0F1035] hover:bg-[#0A0B2A] h-10"
                 >
                   Entrar
                 </Button>
-                Não possui cadastro? 
-                <a 
-                  href="#" 
+                Não possui cadastro?
+                <a
+                  href="#"
                   className="text-blue-500 hover:underline"
                   onClick={handleSignupRedirect} // Adiciona o redirecionamento
                 >

@@ -4,6 +4,38 @@
 @import 'tailwindcss/utilities';
 
 /*Ajuste para que a mensagem de erro nos inputs do Ant Design fique alinhada à esquerda*/
-.ant-form-item-explain { 
+.ant-form-item-explain {
     text-align: left;
 }
+
+.custom-button {
+    color: #365486 !important;
+    background-color: #ffffff !important;
+    border: 1px solid #afbbcf !important;
+}
+
+.custom-button:hover {
+    color: #365486 !important;
+    border: 1px solid #6585bb !important;
+    background-color: #ffffff !important;
+}
+
+.custom-text-area {
+    width: 100%;
+    height: 100%;
+    resize: none;
+    background-color: #F6F6F6;
+}
+
+
+.custom-text-area:focus {
+    border: 'none' #ffffff !important;
+    background-color: #F6F6F6 !important;
+}
+
+.custom-list-item:hover {
+    background-color: #f1f1f1 !important;
+    color: #ffffff !important;
+}
+
+
