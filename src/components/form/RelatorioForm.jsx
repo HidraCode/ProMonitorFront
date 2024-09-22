@@ -310,7 +310,7 @@ export const RelatorioForm = ({ onSubmit, role, documentId }) => {
                 <Col span={24}>
                     {role == 'professor' &&
                         (<Button disabled={assinado === false} download={`relatorio.pdf`} type='link' onClick={handleDownload}>Baixar PDF</Button>)}
-                    <Button type="primary" onClick={handleSubmit}>Assinar e enviar</Button>{/*disabled={assinado}*/}
+                    <Button type="primary" disabled={assinado} onClick={handleSubmit}>Assinar e enviar</Button>{/*disabled={assinado}*/}
                 </Col>
             </Row>
         </div>

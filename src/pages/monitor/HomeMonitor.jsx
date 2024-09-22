@@ -30,14 +30,15 @@ export const HomeMonitor = () => {
     const getData = async () => {
         try {
             const response = await getMonitorTarefasService();
-            console.log(response.data);
-            setTarefas(Array.isArray(response.data) ? response.data : []);
-            const { arquivo_aux, ...tarefaSemArquivoAux } = response.data; // Desestruturando e omitindo arquivo_aux
-            sessionStorage.setItem('tarefas', JSON.stringify(tarefaSemArquivoAux)); // Armazenando a tarefa sem a propriedade arquivo_aux
+            const tarefas = Array.isArray(response.data) ? response.data.map(({ arquivo_aux, ...tarefaSemArquivo }) => tarefaSemArquivo) : [];
+            setTarefas(tarefas);
+            sessionStorage.setItem('tarefas', JSON.stringify(tarefas));
+            console.log('Tarefas armazenadas no sessionStorage:', tarefas);
         } catch (error) {
             console.error(error.message);
         }
     };
+    
 
     // useEffect para carregar os dados do sessionStorage ou da API
     useEffect(() => {

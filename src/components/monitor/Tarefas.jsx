@@ -19,7 +19,10 @@ const Tarefas = ({ data }) => {
         if (!Array.isArray(data)) {
             const storedData = JSON.parse(sessionStorage.getItem('tarefas'));
             // Se storedData for um objeto, extraímos os valores
+            console.log(data)
             tarefasData = Array.isArray(storedData) ? storedData : Object.values(storedData || {});
+            console.log(tarefasData)
+
         }
 
         // Filtrar tarefas do tipo 'tarefa'
