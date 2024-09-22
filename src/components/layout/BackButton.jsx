@@ -8,7 +8,7 @@ const BackButton = ({ path }) => {
   const navigate = useNavigate()
 
   return(
-    <div className="sticky top-0 left-0 w-full py-4">
+    <div className="top-0 left-0 w-full py-4">
         <div className="flex items-center justify-start max-w-4xl mx-auto">
           <Button
             type="link"
