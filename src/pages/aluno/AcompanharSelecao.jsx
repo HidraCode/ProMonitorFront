@@ -35,7 +35,8 @@ const AcompanharSelecao = () => {
   useEffect(() => {
     const fetchInscricoes = async () => {
       try {
-        const response = await axios.get("/api/selecao"); // Ajuste a rota conforme necessário
+        const response = await axios.get(`http://localhost:3000/api/inscricoes/aluno/${localStorage.getItem('codigo_usuario')}`); // Ajuste a rota conforme necessário
+        console.log(response);
         if (Array.isArray(response.data)) {
           setInscricoes(response.data);
         } else {

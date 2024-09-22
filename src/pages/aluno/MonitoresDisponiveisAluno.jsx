@@ -24,7 +24,7 @@ const MonitoresDisponiveisAluno = () => {
   useEffect(() => {
     const fetchMonitores = async () => {
       try {
-        const response = await axios.get("/api/monitores");
+        const response = await axios.get("http://localhost:3000/api/monitores");
         // Verifica se a resposta é um array, senão usa o card de erro
         if (Array.isArray(response.data) && response.data.length > 0) {
           setMonitores(response.data);
