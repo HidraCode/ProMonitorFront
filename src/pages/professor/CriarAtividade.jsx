@@ -3,7 +3,7 @@ import AppHeader from "../../components/layout/AppHeader";
 import Sidemenu from "../../components/layout/Sidemenu";
 import SidemenuItem from "../../components/layout/SidemenuItem";
 import { Form, Button, DatePicker, Select, Upload, message, Input } from 'antd';
-import { HomeOutlined, UploadOutlined, FileAddOutlined, OrderedListOutlined, BellOutlined, EditOutlined } from '@ant-design/icons';
+import { HomeOutlined, UploadOutlined, FileAddOutlined, OrderedListOutlined, BellOutlined, EditOutlined, FileOutlined } from '@ant-design/icons';
 import { FaCircleUser } from "react-icons/fa6";
 import BackButton from "../../components/layout/BackButton";
 import TextArea from "antd/es/input/TextArea";
@@ -72,7 +72,8 @@ const AtribuirTarefa = () => {
   const sidemenuItems = [
     <SidemenuItem icon={<HomeOutlined />} path={"/professor"} label="Home" />,
     <SidemenuItem icon={<EditOutlined />} path={"/professor/analises"} label="Análises" />,
-    <SidemenuItem icon={<FileAddOutlined />} path={"/professor/atribuicoes"} label="Atribuições" />,
+    <SidemenuItem icon={<FileAddOutlined />} path={"/professor/atribuir"} label="Atribuições" />,
+    <SidemenuItem icon={<FileOutlined />} path={"/professor/atividades"} label={"Atividades"} />,
     <SidemenuItem icon={<OrderedListOutlined />} path={"/professor/selecao"} label="Selecionamento" />,
     <SidemenuItem icon={<UploadOutlined />} path={"/professor/criar-edital"} label="Lançar Edital" />
   ];

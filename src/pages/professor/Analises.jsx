@@ -1,15 +1,46 @@
 import React from 'react';
+import { BellOutlined, HomeOutlined, FileOutlined, EditOutlined, FileAddOutlined, OrderedListOutlined, UploadOutlined, ArrowLeftOutlined } from '@ant-design/icons';
+import { FaCircleUser } from 'react-icons/fa6';
 import AppHeader from '../../components/layout/AppHeader';
 import Sidemenu from '../../components/layout/Sidemenu';
 import SidemenuItem from '../../components/layout/SidemenuItem';
 import BackButton from '../../components/layout/BackButton';
-import { Col, Row } from 'antd';
+import { Col, Row, Button } from 'antd';
 import AnaliseCard from '../../components/AnaliseCard';
 
 const Analises = () => {
+
+  const sidemenuItems = [
+    <SidemenuItem icon={<HomeOutlined />} path={"/professor"} label="Home" />,
+    <SidemenuItem icon={<EditOutlined />} path={"/professor/analises"} label="Análises" />,
+    <SidemenuItem icon={<FileAddOutlined />} path={"/professor/atribuir"} label="Atribuições" />,
+    <SidemenuItem icon={<FileOutlined />} path={"/professor/atividades"} label={"Atividades"} />,
+    <SidemenuItem icon={<OrderedListOutlined />} path={"/professor/selecao"} label="Selecionamento" />,
+    <SidemenuItem icon={<UploadOutlined />} path={"/professor/criar-edital"} label="Lançar Edital" />
+  ];
+
+  const headerButtons = [
+    <>
+      <Button
+        type="link"
+        className="text-white hover:text-gray-300"
+        icon={ <BellOutlined style={{ fontSize:'20px' }} /> }
+        onClick={null}
+      >
+      </Button>
+      <Button
+        type="link"
+        className="text-white hover:text-gray-300"
+        icon={ <FaCircleUser className='w-6 h-6' /> }
+        onClick={null}
+      >
+      </Button>
+    </>
+  ]
+
   return (
     <div className="flex flex-col min-h-screen bg-white">
-    <AppHeader logoColor={null} sideMenu={<Sidemenu items={null} />} buttons={null} />
+    <AppHeader logoColor={null} sideMenu={<Sidemenu items={sidemenuItems} />} buttons={headerButtons} />
     <BackButton path={"/professor/atividades"} />
 
       <div className="flex flex-col items-center justify-start flex-grow bg-white">

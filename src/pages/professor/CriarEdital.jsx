@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Form, Input, Button, DatePicker, Select, Modal } from 'antd';
-import { DeleteOutlined, BellOutlined, HomeOutlined, EditOutlined, FileAddOutlined, OrderedListOutlined, UploadOutlined, ArrowLeftOutlined } from '@ant-design/icons';
+import { DeleteOutlined, BellOutlined, HomeOutlined, FileOutlined, EditOutlined, FileAddOutlined, OrderedListOutlined, UploadOutlined, ArrowLeftOutlined } from '@ant-design/icons';
 import { FaCircleUser } from "react-icons/fa6";
 import AppHeader from '../../components/layout/AppHeader';
 import Sidemenu from '../../components/layout/Sidemenu';
@@ -69,6 +69,7 @@ const CriarEdital = () => {
     <SidemenuItem icon={<HomeOutlined />} path={"/professor"} label="Home" />,
     <SidemenuItem icon={<EditOutlined />} path={"/professor/analises"} label="Análises" />,
     <SidemenuItem icon={<FileAddOutlined />} path={"/professor/atribuir"} label="Atribuições" />,
+    <SidemenuItem icon={<FileOutlined />} path={"/professor/atividades"} label={"Atividades"} />,
     <SidemenuItem icon={<OrderedListOutlined />} path={"/professor/selecao"} label="Selecionamento" />,
     <SidemenuItem icon={<UploadOutlined />} path={"/professor/criar-edital"} label="Lançar Edital" />
   ];
