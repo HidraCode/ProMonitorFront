@@ -38,7 +38,7 @@ const TarefaDetalhes = () => {
                     console.log(response);
                     setTarefa(response.data);
                     const { arquivo_aux, ...tarefaSemArquivoAux } = response.data; // Desestruturando e omitindo arquivo_aux
-                    sessionStorage.setItem('tarefa', JSON.stringify(tarefaSemArquivoAux)); // Armazenando a tarefa sem a propriedade arquivo_aux
+                    sessionStorage.setItem(`tarefa_${codigo_tarefa}`, JSON.stringify(tarefaSemArquivoAux)); // Armazenando a tarefa sem a propriedade arquivo_aux
                 } catch (error) {
                     console.error('Erro ao obter detalhes da tarefa:', error.message);
                 }
@@ -85,6 +85,7 @@ const TarefaDetalhes = () => {
                     ...prevTarefa,
                     status: 'concluida',
                 }));
+                sessionStorage.removeItem('tarefas'); // Remove para que seja solicitado à API novamente os dados atualizados
             }
         } catch (error) {
             console.log(error.message);
