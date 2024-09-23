@@ -86,6 +86,8 @@ export const FrequenciaForm = ({ onSubmit, role, documentId }) => {
                         const frequenciaData = JSON.parse(storedFrequenciaData);
                         setFormData(frequenciaData);
                         setHorasPorDia(frequenciaData.horasPorDia);
+                        setAssinado(frequenciaData.dataAssinatura ? true : false);
+
                     } else {
                         // Se não há dados no sessionStorage, faz a chamada à API
                         const response = await getFrequencia(documentId);
@@ -105,6 +107,7 @@ export const FrequenciaForm = ({ onSubmit, role, documentId }) => {
                             dataAssinatura: data.dataAssinatura ? data.dataAssinatura : moment(new Date()).format('DD/MM/YYYY'),
                             horasPorDia: data.horasPorDia
                         };
+                        setAssinado(data.dataAssinatura ? true : false);
 
                         // Atualiza o formulário
                         setFormData(frequenciaData);
@@ -112,6 +115,7 @@ export const FrequenciaForm = ({ onSubmit, role, documentId }) => {
 
                         // Salva os dados no sessionStorage
                         sessionStorage.setItem(`frequenciaData_${documentId}`, JSON.stringify(frequenciaData));
+
                     }
                 }
             } catch (error) {
