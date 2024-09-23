@@ -8,6 +8,7 @@ import SidemenuItem from '../../components/layout/SidemenuItem';
 import moment from 'moment';
 import { createEditalService } from '../../services/createEditalService';
 import { useNavigate } from 'react-router-dom';
+import BackButton from '../../components/layout/BackButton';
 
 const { RangePicker } = DatePicker;
 
@@ -94,6 +95,7 @@ const CriarEdital = () => {
     <div>
       {/* <AppHeader /> */}
       <AppHeader buttons={headerButtons} sideMenu={<Sidemenu items={sidemenuItems} />} /> 
+      <BackButton path={"/professor"} />
       </div>
       <div className="flex flex-col items-center justify-center min-h-screen bg-white p-4 md:my-0 my-16">
         <div className="text-center mb-6">
