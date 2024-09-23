@@ -28,7 +28,7 @@ export const RelatorioProfessor = () => {
     };
 
     const handleBackToLogin = () => {
-        navigate("/professor");
+        navigate("/professor/analises");
     };
 
     return (

@@ -44,9 +44,9 @@ const Login = () => {
       form.resetFields();
   
       if (response.role === 'aluno') {
-        navigate('/aluno/home'); // Redireciona para a rota correta do aluno
+        navigate('/aluno'); // Redireciona para a rota correta do aluno
       } else if (response.role === 'professor') {
-        navigate('/professor/home'); // Redireciona para a rota correta do professor
+        navigate('/professor'); // Redireciona para a rota correta do professor
       } else if (response.role === 'monitor') {
         navigate('/monitor/home'); // Se houver rota para monitor, configure-a
       } else if (response.role === 'coordenador') {
