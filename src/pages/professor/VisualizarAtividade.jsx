@@ -45,7 +45,7 @@ const VisualizarAtividade = () => {
   return (
     <div className="flex flex-col min-h-screen bg-white">
       <AppHeader logoColor={null} sideMenu={<Sidemenu items={sidemenuItems} />} buttons={headerButtons} />
-      <BackButton path={"/professor"} />
+      <BackButton path={"/professor/atividades"} />
 
       <div className="flex flex-col items-center justify-start flex-grow bg-white">
         <div className="text-center mb-6">
