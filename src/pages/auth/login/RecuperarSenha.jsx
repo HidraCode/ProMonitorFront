@@ -38,6 +38,10 @@ const RecuperarSenha = () => {
         }
     }
 
+    const handleBackToLogin = () => {
+        navigate('/auth/login'); // Redireciona para a página de login
+    }
+    
     // Remove o alerta depois de 5 segundos
     useEffect(() => {
         if (alert) {
@@ -51,7 +55,7 @@ const RecuperarSenha = () => {
         <section className="relative h-screen">
             {/* Botão de voltar */}
             <Button
-                onClick={() => navigate('/api/auth/login')}
+                onClick={handleBackToLogin}
                 type="text"
                 className="absolute font-medium lg:text-sm sm:text-xs justify-start m-5 absolute"
                 icon={<LeftOutlined />}>
