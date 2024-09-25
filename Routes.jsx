@@ -41,6 +41,7 @@ function AppRoutes() {
         <Route path="/auth/login" element={<Login />} />
         <Route path="/auth/recuperar-senha" element={<RecuperarSenha />} />
         <Route path="/auth/recuperar-senha/verificar-codigo" element={<VerificarCodigo />} />
+        <Route path="/auth/redefinir-senha" element={<RedefinirSenha />} />
         <Route path="/aluno" element={<HomeAluno />} />
         <Route path="/aluno/atualizar-dados" element={<AlterarDadosAluno />} />
         <Route path="/aluno/editais" element={<EditaisDisponiveisAluno />} />

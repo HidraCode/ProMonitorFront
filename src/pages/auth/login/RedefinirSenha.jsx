@@ -56,7 +56,7 @@ const RedefinirSenha = () => {
                 setAlert(false);
                 // Redireciona após 2 segundos
                 if (typeAlert === 'success') {
-                    navigate('/api/auth/login');
+                    navigate('/auth/login');
                 }
             }, 2000); // 2 segundos
 
@@ -68,7 +68,7 @@ const RedefinirSenha = () => {
         <section className="relative h-screen">
             {/* Botão de voltar */}
             <Button
-                onClick={() => navigate('/api/auth/login')}
+                onClick={() => navigate('/auth/login')}
                 type="text"
                 className="font-medium absolute top-5 left-5"
                 icon={<LeftOutlined />}>
