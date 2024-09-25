@@ -47,7 +47,7 @@ const VerificarCodigo = () => {
     };
 
     const handleBackToRecuperarSenha = () => {
-        navigate('/auth/password-recovery'); // Redireciona para a página de Recuperar Senha
+        navigate('/auth/recuperar-senha'); // Redireciona para a página de Recuperar Senha
     }
 
     const handleResend = async () => {
