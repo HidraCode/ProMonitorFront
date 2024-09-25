@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 import { Alert } from 'antd';
 import { Col, Row, Form, Button, Input } from 'antd';
-import { useNavigate } from 'react-router-dom'; // Importa o useNavigate
-import logoPreta from '../../../assets/logoPreta.svg';
+import logoPreta from '../../../assets/logoPreta.svg'
 import { LeftOutlined } from '@ant-design/icons';
 import { recuperarSenhaService } from '../../../services/auth.js';
 
 const RecuperarSenha = () => {
+
     const [form] = Form.useForm();
-    const navigate = useNavigate(); // Inicializa o hook useNavigate
     const [message, setMessage] = useState(null);
     const [alert, setAlert] = useState(false)
+    const navigate = useNavigate();
 
     const handleSubmit = async (values) => {
         try {
@@ -18,53 +19,49 @@ const RecuperarSenha = () => {
             const response = await recuperarSenhaService(values, false);
             console.log('Received values of form: ', values);
 
-            // Processa a resposta da API
-            const data = await response.json();
-            if (response.ok) {
-                console.log('Password recovery successful:', data);
-                form.resetFields(); // Limpa os campos do formulário
-                // Aqui você pode redirecionar para a página VerificarCodigo
+            // Verifica a resposta da API
+            if (response.data.success) {
+                const token = response.data.token;
+                const requestData = { email: values.email, token: token };
+                navigate('/auth/recuperar-senha/verificar-codigo', { state: requestData });
             } else {
-                console.error('Password recovery failed:', data);
-                form.resetFields(); // Limpa os campos do formulário
+                setMessage('Erro: ' + response.message);
+                setAlert(true);
+                console.log(response.message);
             }
         } catch (error) {
-            console.error('Error:', error);
+            // Exibe um alerta e limpar os campos do formulário
+            console.error('Erro ao recuperar a senha:', error.message);
+            setMessage('Erro: ' + (error.response?.data?.message || 'Erro desconhecido'));
+            setAlert(true);
             form.resetFields(); // Limpa os campos do formulário
         }
     }
 
-    const handleBackToLogin = () => {
-        navigate('/auth/login'); // Redireciona para a página de login
-    }
     // Remove o alerta depois de 5 segundos
     useEffect(() => {
         if (alert) {
             const timer = setTimeout(() => {
                 setAlert(false);
             }, 5000); // 5000 ms = 5 segundos
-
             return () => clearTimeout(timer); // Limpa o temporizador se o componente for desmontado
         }
     }, [alert]);
-
     return (
         <section className="relative h-screen">
             {/* Botão de voltar */}
             <Button
+                onClick={() => navigate('/api/auth/login')}
                 type="text"
                 className="absolute font-medium lg:text-sm sm:text-xs justify-start m-5 absolute"
-                icon={<LeftOutlined />}
-                onClick={handleBackToLogin} // Adiciona o redirecionamento ao clicar
-            >
+                icon={<LeftOutlined />}>
                 Voltar
             </Button>
-            <Row
+            <Row // Ajustes para que a Row fique centralizada
                 justify="center"
                 align="middle"
-                className="h-full"
-            >
-                <Col xs={16} sm={16} md={16} lg={12} xl={6}
+                className="h-full">
+                <Col xs={16} sm={16} md={16} lg={12} xl={6} // Ajuste na responsividade
                     justify="center"
                     className="text-center space-y-6" >
                     {/* Mensagem de erro para alertar ao usuário que a requisição falhou */}
@@ -74,17 +71,15 @@ const RecuperarSenha = () => {
                         alt="Logo ProMonitor"
                         className="mx-auto size-5/12" />
                     <h1 className="mt-0 md:text-3xl text-2xl font-bold">Recuperar senha</h1>
-                    <p className="font-medium lg:text-sm sm:text-xs w-2/3 mx-auto">
-                        Para redefinir sua senha, informe o e-mail cadastrado na sua conta e lhe enviaremos um link com as instruções.
-                    </p>
+                    <p className="font-medium lg:text-sm sm:text-xs w-2/3 mx-auto">Para redefinir sua senha,
+                        informe o e-mail cadastrado na sua conta e lhe enviaremos um link com as instruções.</p>
                     <Form
                         form={form}
                         className="justify-center space-y-5"
                         layout="vertical"
                         onFinish={handleSubmit}
-                        requiredMark={false}
-                    >
-                        {/* Campo para inserir e-mail com obrigatoriedade */}
+                        requiredMark={false}>
+                        {/* Campo para inserir e-mail com obrigatoriedade*/}
                         <Form.Item
                             name="email"
                             rules={[
@@ -103,18 +98,15 @@ const RecuperarSenha = () => {
                         >
                             <Input
                                 placeholder="Digite seu e-mail"
-                                className="w-full bg-gray-100 p-2 border-none"
-                            />
+                                className="w-full bg-gray-100 p-2 border-none" />
                         </Form.Item>
-                        {/* Botão para envio do formulário */}
-                        <Form.Item>
+                        {/*Botão para envio do formulário*/}
+                        <Form.Item >
                             <Button
                                 type="primary"
                                 htmlType="submit"
-                                className="w-full bg-custom-dark-blue text-white p-5 font-semibold border-none"
-                            >
-                                Enviar
-                            </Button>
+                                className="w-full bg-custom-dark-blue text-white p-5 font-semibold border-none">
+                                Enviar</Button>
                         </Form.Item>
                     </Form>
                 </Col>
