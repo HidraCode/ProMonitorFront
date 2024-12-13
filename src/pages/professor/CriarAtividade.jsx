@@ -8,32 +8,37 @@ import { FaCircleUser } from "react-icons/fa6";
 import BackButton from "../../components/layout/BackButton";
 import TextArea from "antd/es/input/TextArea";
 import axios from 'axios';  // Import axios para requisições
+import { useEffect } from "react";
 
 const AtribuirTarefa = () => {
   const [form] = Form.useForm(); // Hook para manipular o formulário
   const [fileList, setFileList] = useState([]); // Estado para armazenar arquivos
+  const [monitores, setMonitores] = useState([]);
 
   // Manipulador de arquivos para upload
   const handleFileChange = ({ fileList }) => setFileList(fileList);
 
   const onFinish = async (values) => {
-    const { disciplina, monitor, prazo, descricao } = values;
+    const { disciplina, monitor, prazo, descricao, titulo, tipo } = values;
     
     // Cria um objeto FormData para enviar os arquivos e outros campos
     const formData = new FormData();
+    formData.append('codigo_professor', localStorage.getItem('codigo_usuario'));
     formData.append('disciplina', disciplina);
-    formData.append('monitor', monitor);
-    formData.append('prazo', prazo ? prazo.format('YYYY-MM-DD') : '');
+    formData.append('codigo_monitor', monitor);
+    formData.append('data_conclusao', prazo ? prazo.format('YYYY-MM-DD') : '');
     formData.append('descricao', descricao);
+    formData.append('titulo', titulo);
+    formData.append('tipo', tipo);
 
     // Adiciona os arquivos ao FormData
     fileList.forEach(file => {
-      formData.append('arquivosAuxiliares', file.originFileObj);
+      formData.append('arquivo_aux', file.originFileObj);
     });
 
     try {
       // Faz a requisição para enviar os dados e os arquivos
-      const response = await axios.post('/api/atribuir-tarefa', formData, {
+      const response = await axios.post('http://localhost:3000/api/professores/atribuir-tarefa', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -83,6 +88,20 @@ const AtribuirTarefa = () => {
     { value: 'material', label: <span>Material de Apoio</span> }
   ]
 
+  // obter os monitores do professor ao montar o componente
+  useEffect(() => {
+    const fetchMonitores = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3000/api/monitores/professor/${localStorage.getItem('codigo_usuario')}`);
+        setMonitores(response.data);
+      } catch (error) {
+        message.error('Erro ao carregar os monitores');
+      }
+    };
+
+    fetchMonitores();
+  }, []);
+
   return(
     <>
       <div className="flex flex-col min-h-screen bg-white">
@@ -125,7 +144,13 @@ const AtribuirTarefa = () => {
                     name="monitor"
                     label="Monitor"
                   >
-                    <Select placeholder="Selecione um monitor" />
+                    <Select placeholder="Selecione um monitor" >
+                    {monitores.map((monitor) => (
+                      <Option key={monitor.codigo_monitor} value={monitor.codigo_monitor}>
+                        {monitor.nome}
+                      </Option>
+                    ))}
+                    </Select>
                   </Form.Item>
                 </div>
                 <div className="flex flex-col w-full md:w-1/2 px-2 md:px-0">

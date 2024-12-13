@@ -8,9 +8,11 @@ import Sidemenu from '../../components/layout/Sidemenu';
 import SidemenuItem from '../../components/layout/SidemenuItem';
 import BackButton from '../../components/layout/BackButton';
 import AtividadeCard from '../../components/AtividadeCard';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const VisualizarAtividades = () => {
-
+  const [atividades, setAtividades] = useState([])
   const navigate = useNavigate()
 
   const sidemenuItems = [
@@ -45,6 +47,21 @@ const VisualizarAtividades = () => {
     navigate("/professor/atribuir")
   }
 
+  useEffect(() => {
+    const fetchAtividades = async () => {
+      try {
+        const codigo_usuario = localStorage.getItem('codigo_usuario');
+        const response = await axios.get(`http://localhost:3000/api/professores/tarefas/${codigo_usuario}`);
+        
+        setAtividades(response.data);
+      } catch (err) {
+        console.log('Erro ao carregar atividades: ', err)
+      }
+    };
+
+    fetchAtividades();
+  }, []);
+
   return (
     <div className="flex flex-col min-h-screen bg-white">
       <AppHeader logoColor={null} sideMenu={<Sidemenu items={sidemenuItems} />} buttons={headerButtons} />
@@ -55,14 +72,17 @@ const VisualizarAtividades = () => {
           <h2 className="text-2xl font-semibold text-custom-blue">Atividades Atribuidas</h2>
         </div>
         <div className='w-8/12'>
-          <AtividadeCard 
-            titulo={"Revisar material de Teoria dos Conjuntos"}
-            conteudo={"Nesta tarefa, você deve revisar todo o material relacionado a Teoria dos Conjuntos, garantindo que todos os conceitos estejam bem compreendidos e que você seja capaz de aplicar as definições e propriedades em diferentes contextos."}
-            tipo={'tarefa'}
-            professor={"Gabriel Cisneiros"}
+          {atividades.map((atividade) => (
+            <AtividadeCard 
+            key={atividade.codigo_tarefa}
+            titulo={atividade.titulo}
+            conteudo={atividade.descricao}
+            tipo={atividade.tipo}
+            professor={atividade.nome}
             anexos={true}
-            data={"10/02/2024"}
+            data={atividade.data_conclusao}
           />
+          ))}
         </div>
       </div>
       <FloatButton  
